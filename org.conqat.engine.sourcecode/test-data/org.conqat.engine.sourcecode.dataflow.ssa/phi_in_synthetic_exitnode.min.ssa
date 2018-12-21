@@ -1,0 +1,27 @@
+0: { BasicBlock 1
+  ---
+  a_-1 = ? [default init]
+  ---
+  condition(yes=[], no=[], checked=[])
+  ---
+ } --> 1, 2
+1: { BasicBlock 2
+  ---
+  ---
+ } --> 3
+3: { BasicBlock 3
+  ---
+  ---
+ } --> 
+2: { BasicBlock 4
+  ---
+  a_-4 = value( 0 )
+  ---
+  condition(yes=[], no=[], checked=[])
+  ---
+ } --> 4, 3
+4: { BasicBlock 5
+  ---
+  a_-5 = value( 1 )
+  ---
+ } --> 3

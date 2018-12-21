@@ -1,0 +1,60 @@
+0: { BasicBlock 1
+  ---
+  ---
+  k_-1 = ?
+  ---
+  l_-1 = ?
+  ---
+  use(k_-1)
+  condition(yes=[k_-1=A], no=[k_-1=N], checked=[k_-1])
+  ---
+ } --> 1, 2
+1: { BasicBlock 2
+  ---
+  k_-2 = null
+  ---
+  use(l_-1)
+  condition(yes=[l_-1=A], no=[l_-1=N], checked=[l_-1])
+  ---
+ } --> 3, 4
+3: { BasicBlock 3
+  ---
+  l_-3 = null
+  ---
+  ---
+ } --> 5
+5: { BasicBlock 4
+  ---
+  ---
+ } --> 
+4: { BasicBlock 5
+  ---
+  l_-5 = value( assume non-null )
+  ---
+  ---
+ } --> 5
+2: { BasicBlock 6
+  ---
+  k_-6 = value( assume non-null )
+  ---
+  use(l_-1)
+  condition(yes=[l_-1=A], no=[l_-1=N], checked=[l_-1])
+  ---
+ } --> 6, 7
+6: { BasicBlock 7
+  ---
+  l_-7 = null
+  ---
+  ---
+ } --> 5
+7: { BasicBlock 8
+  ---
+  l_-8 = value( assume non-null )
+  ---
+  use(k_-6)
+  dereference(k_-6)
+  ---
+  use(l_-8)
+  dereference(l_-8)
+  ---
+ } --> 5

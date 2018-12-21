@@ -1,0 +1,5 @@
+<?xml version="1.0" ?> 
+<doc> 
+<message><file>test1.cpp</file> <line>5</line> <type>Warning</type> <code>559</code> <desc>Size of argument no. 2 inconsistent with format</desc></message> 
+<message><file>subdir/test2.cpp</file> <line>6</line> <type>Warning</type> <code>429</code> <desc>Custodial pointer 'x' (line 2) has not been freed or returned</desc></message> 
+</doc> 

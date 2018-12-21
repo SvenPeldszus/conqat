@@ -1,0 +1,10 @@
+# @ConQAT.Rating GREEN Hash: B09C957A2E18B49B8D907A6765F44F6B
+
+name=args4j
+description=Java command line arguments parser
+website=http://args4j.kohsuke.org/
+version=2.0.28
+
+license=MIT Licence
+
+remark=Required by closure compiler and closure templates (as we removed this)

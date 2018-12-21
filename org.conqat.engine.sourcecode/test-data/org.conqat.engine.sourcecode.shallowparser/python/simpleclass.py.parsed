@@ -1,0 +1,6 @@
+TYPE: class: MyClass (lines 1-6)
+  STATEMENT: simple statement: """A simple example class""" (lines 2-2)
+  STATEMENT: simple statement: i (lines 3-3)
+  METHOD: method: f (lines 4-6)
+    STATEMENT: simple statement: self (lines 5-5)
+    STATEMENT: simple statement: return (lines 6-6)

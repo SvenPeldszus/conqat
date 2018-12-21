@@ -1,0 +1,97 @@
+#% text_encoding = iso8859_1
+_package user
+# Copyright © 2004 Minto Spatial Solutions Ltd.
+#
+# This software is released under the terms of version 2 of the
+# GNU General Public License.  The full license text is
+# provided in the license.txt file in the mss product
+# directory, and is also available at http://www.fsf.org.
+
+_pragma(classify_level=basic, topic={mss_scheduler})
+##
+## mss_scheduled_task_result
+##
+## A database record that represents a task completed by
+## the mss_scheduler_engine.
+##
+
+def_slotted_exemplar(:mss_scheduled_task_result,
+{},
+{:mss_scheduler_ds_record})
+$
+
+_pragma(classify_level=advanced, topic={mss_scheduler})
+_method mss_scheduled_task_result.can_match?(fd)
+	## 
+	## Derive values for various fields from the actual data model.
+	##
+
+	_if fd.name _is :type
+	_then
+		_return _true
+	_endif
+	_return _super.can_match?(fd)
+		
+_endmethod
+$
+
+_pragma(classify_level=advanced, topic={mss_scheduler})
+_method mss_scheduled_task_result.match_string(fd, a_string, _optional record)
+	## 
+	## Derive values for various fields from the actual data model.
+	## 
+
+	_if (fdn << fd.name) _is :type
+	_then
+		_return sorted_collection.new_from(mss_scheduler_engine.defined_task_handlers.keys)
+	_endif
+	_return _super.match_string(fd, a_string, record)
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_scheduler})
+_method mss_scheduled_task_result.insert_trigger(_gather args)
+	## 
+	## 
+	
+	_dynamic !mss_scheduler_initiator!
+	_if !mss_scheduler_initiator! _is _unset
+	_then
+		_self.user_error(:insert_no_initiator)
+	_endif
+	_super.insert_trigger(_scatter args)
+
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_scheduler})
+_method mss_scheduled_task_result.update_trigger(_gather args)
+	## 
+	## 
+	
+	_dynamic !mss_scheduler_initiator!
+	_if !mss_scheduler_initiator! _is _unset
+	_then
+		_self.user_error(:update_no_initiator)
+	_endif
+	_super.update_trigger(_scatter args)
+
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_scheduler})
+_method mss_scheduled_task_result.delete_trigger(_gather args)
+	## 
+	## 
+	
+	_dynamic !mss_scheduler_initiator!
+	_if !mss_scheduler_initiator! _is _unset
+	_then
+		_self.user_error(:delete_no_initiator)
+	_endif
+	_super.delete_trigger(_scatter args)
+
+_endmethod
+$
+

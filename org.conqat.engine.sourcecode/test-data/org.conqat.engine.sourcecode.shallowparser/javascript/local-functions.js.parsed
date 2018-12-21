@@ -1,0 +1,5 @@
+METHOD: named function: a (lines 1-7)
+  STATEMENT: for: null (lines 2-6)
+    METHOD: anonymous function: null (lines 2-4)
+      STATEMENT: simple statement: return (lines 3-3)
+    STATEMENT: simple statement: console (lines 5-5)

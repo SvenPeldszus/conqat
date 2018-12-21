@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="3e680b7d-83d9-4b7f-ba42-73d75af57379" name="juergens@JUERGENS-LAPTOP 2011-09-08 13:23:20" runUser="juergens-laptop\juergens" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="3c386d59-8f04-49ae-afc2-ea260dbb02ca">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment runDeploymentRoot="juergens_JUERGENS-LAPTOP 2011-09-08 13_23_20">
+      <DeploymentItem filename="E:\code\cqse-conqat-root\engine\eu.cqse.conqat.systemtest\test-src-cs\main\SystemtestSolution\ILAnalyzer\bin\Debug\ILAnalyzer.exe" />
+      <DeploymentItem filename="E:\code\cqse-conqat-root\engine\eu.cqse.conqat.systemtest\test-src-cs\main\SystemtestSolution\GUI\bin\Debug\GUI.exe" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific>
+        <UnitTestRunConfig testTypeId="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b">
+          <AssemblyResolution>
+            <TestDirectory useLoadContext="true" />
+          </AssemblyResolution>
+        </UnitTestRunConfig>
+        <WebTestRunConfiguration testTypeId="4e7599fa-5ecb-43e9-a887-cd63cf72d207">
+          <Browser name="Internet Explorer 7.0">
+            <Headers>
+              <Header name="User-Agent" value="Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)" />
+              <Header name="Accept" value="*/*" />
+              <Header name="Accept-Language" value="{{$IEAcceptLanguage}}" />
+              <Header name="Accept-Encoding" value="GZIP" />
+            </Headers>
+          </Browser>
+        </WebTestRunConfiguration>
+      </TestTypeSpecific>
+      <AgentRule name="LocalMachineDefaultRole">
+        <DataCollectors>
+          <DataCollector uri="datacollector://microsoft/CodeCoverage/1.0" assemblyQualifiedName="Microsoft.VisualStudio.TestTools.CodeCoverage.CoveragePlugIn, Microsoft.VisualStudio.QualityTools.Plugins.CodeCoverage, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" friendlyName="Code Coverage">
+            <Configuration>
+              <CodeCoverage xmlns="">
+                <Regular>
+                  <CodeCoverageItem binaryFile="E:\code\cqse-conqat-root\engine\eu.cqse.conqat.systemtest\test-src-cs\main\SystemtestSolution\ILAnalyzer\bin\Debug\ILAnalyzer.exe" pdbFile="E:\code\cqse-conqat-root\engine\eu.cqse.conqat.systemtest\test-src-cs\main\SystemtestSolution\ILAnalyzer\bin\Debug\ILAnalyzer.instr.pdb" instrumentInPlace="true" />
+                  <CodeCoverageItem binaryFile="E:\code\cqse-conqat-root\engine\eu.cqse.conqat.systemtest\test-src-cs\main\SystemtestSolution\GUI\bin\Debug\GUI.exe" pdbFile="E:\code\cqse-conqat-root\engine\eu.cqse.conqat.systemtest\test-src-cs\main\SystemtestSolution\GUI\bin\Debug\GUI.instr.pdb" instrumentInPlace="true" />
+                </Regular>
+              </CodeCoverage>
+            </Configuration>
+          </DataCollector>
+        </DataCollectors>
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2011-09-08T13:23:20.3653040+02:00" queuing="2011-09-08T13:23:21.0517052+02:00" start="2011-09-08T13:23:21.1453054+02:00" finish="2011-09-08T13:23:24.4837112+02:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="6" executed="5" passed="4" error="1" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <ResultFiles>
+      <ResultFile path="JUERGENS-LAPTOP\data.coverage" />
+    </ResultFiles>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestFail" storage="e:\code\cqse-conqat-root\engine\eu.cqse.conqat.systemtest\test-src-cs\main\systemtestsolution\unittests\bin\debug\unittests.dll" id="a358145f-27e5-c5d6-7915-5bdf20d63435">
+      <Execution id="26e319e8-a89c-47e3-90a8-dd0b450ecdf7" />
+      <TestMethod codeBase="E:/code/cqse-conqat-root/engine/eu.cqse.conqat.systemtest/test-src-cs/main/SystemtestSolution/UnitTests/bin/Debug/UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="UnitTests.UnitTest1, UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestFail" />
+    </UnitTest>
+    <UnitTest name="TestFormatTypeStringStringFormatter" storage="e:\code\cqse-conqat-root\engine\eu.cqse.conqat.systemtest\test-src-cs\main\systemtestsolution\unittests\bin\debug\unittests.dll" id="4ac20104-2cb7-cf47-0954-8dd905e83102">
+      <Execution id="7c03c024-24dd-46f7-a0de-6c6c86eab324" />
+      <TestMethod codeBase="E:/code/cqse-conqat-root/engine/eu.cqse.conqat.systemtest/test-src-cs/main/SystemtestSolution/UnitTests/bin/Debug/UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="UnitTests.UnitTest1, UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestFormatTypeStringStringFormatter" />
+    </UnitTest>
+    <UnitTest name="TestFormatTypeString" storage="e:\code\cqse-conqat-root\engine\eu.cqse.conqat.systemtest\test-src-cs\main\systemtestsolution\unittests\bin\debug\unittests.dll" id="3f42b9fa-84c9-fee1-17c1-a65030dd1bb3">
+      <Execution id="fc13332d-96b9-4415-8010-43ccf6cbc8ef" />
+      <TestMethod codeBase="E:/code/cqse-conqat-root/engine/eu.cqse.conqat.systemtest/test-src-cs/main/SystemtestSolution/UnitTests/bin/Debug/UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="UnitTests.UnitTest1, UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestFormatTypeString" />
+    </UnitTest>
+    <UnitTest name="TestCallStaticMethod" storage="e:\code\cqse-conqat-root\engine\eu.cqse.conqat.systemtest\test-src-cs\main\systemtestsolution\unittests\bin\debug\unittests.dll" id="f2652e3e-139c-a701-c595-8d150095fa6f">
+      <Execution id="0dc9d6a0-ad5f-4d21-bc8b-00d6d295598e" />
+      <TestMethod codeBase="E:/code/cqse-conqat-root/engine/eu.cqse.conqat.systemtest/test-src-cs/main/SystemtestSolution/UnitTests/bin/Debug/UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="UnitTests.UnitTest1, UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestCallStaticMethod" />
+    </UnitTest>
+    <UnitTest name="TestSuccess" storage="e:\code\cqse-conqat-root\engine\eu.cqse.conqat.systemtest\test-src-cs\main\systemtestsolution\unittests\bin\debug\unittests.dll" id="617682ed-04a3-5fc7-b5f2-94a6dda15bcf">
+      <Execution id="8479e110-ab4f-4232-883f-7b3b2ebcb147" />
+      <TestMethod codeBase="E:/code/cqse-conqat-root/engine/eu.cqse.conqat.systemtest/test-src-cs/main/SystemtestSolution/UnitTests/bin/Debug/UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="UnitTests.UnitTest1, UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestSuccess" />
+    </UnitTest>
+    <UnitTest name="TestSuccess" storage="e:\code\cqse-conqat-root\engine\eu.cqse.conqat.systemtest\test-src-cs\main\systemtestsolution\unittests\bin\debug\unittests.dll" id="9f63e030-a22f-8539-9a95-00066096c258">
+      <Execution id="0a189672-c06c-4b5f-94d5-bd4420126dab" />
+      <TestMethod codeBase="E:/code/cqse-conqat-root/engine/eu.cqse.conqat.systemtest/test-src-cs/main/SystemtestSolution/UnitTests/bin/Debug/UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="UnitTests.UnitTest1, UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestExceptionWithoutOutcome" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="3f42b9fa-84c9-fee1-17c1-a65030dd1bb3" executionId="fc13332d-96b9-4415-8010-43ccf6cbc8ef" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4ac20104-2cb7-cf47-0954-8dd905e83102" executionId="7c03c024-24dd-46f7-a0de-6c6c86eab324" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="617682ed-04a3-5fc7-b5f2-94a6dda15bcf" executionId="8479e110-ab4f-4232-883f-7b3b2ebcb147" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a358145f-27e5-c5d6-7915-5bdf20d63435" executionId="26e319e8-a89c-47e3-90a8-dd0b450ecdf7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f2652e3e-139c-a701-c595-8d150095fa6f" executionId="0dc9d6a0-ad5f-4d21-bc8b-00d6d295598e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9f63e030-a22f-8539-9a95-00066096c258" executionId="0a189672-c06c-4b5f-94d5-bd4420126dab" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="fc13332d-96b9-4415-8010-43ccf6cbc8ef" testId="3f42b9fa-84c9-fee1-17c1-a65030dd1bb3" testName="TestFormatTypeString" computerName="JUERGENS-LAPTOP" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fc13332d-96b9-4415-8010-43ccf6cbc8ef">
+    </UnitTestResult>
+    <UnitTestResult executionId="7c03c024-24dd-46f7-a0de-6c6c86eab324" testId="4ac20104-2cb7-cf47-0954-8dd905e83102" testName="TestFormatTypeStringStringFormatter" computerName="JUERGENS-LAPTOP" duration="00:00:00.0013919" startTime="2011-09-08T13:23:22.7833083+02:00" endTime="2011-09-08T13:23:22.7989083+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7c03c024-24dd-46f7-a0de-6c6c86eab324">
+    </UnitTestResult>
+    <UnitTestResult executionId="8479e110-ab4f-4232-883f-7b3b2ebcb147" testId="617682ed-04a3-5fc7-b5f2-94a6dda15bcf" testName="TestSuccess" computerName="JUERGENS-LAPTOP" duration="00:00:00.0001189" startTime="2011-09-08T13:23:22.7989083+02:00" endTime="2011-09-08T13:23:22.7989083+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="PassedButRunAborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8479e110-ab4f-4232-883f-7b3b2ebcb147">
+    </UnitTestResult>
+    <UnitTestResult executionId="26e319e8-a89c-47e3-90a8-dd0b450ecdf7" testId="a358145f-27e5-c5d6-7915-5bdf20d63435" testName="TestFail" computerName="JUERGENS-LAPTOP" duration="00:00:00.0309552" startTime="2011-09-08T13:23:22.7989083+02:00" endTime="2011-09-08T13:23:22.8301083+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="26e319e8-a89c-47e3-90a8-dd0b450ecdf7">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.IsTrue failed. </Message>
+          <StackTrace>   at UnitTests.UnitTest1.TestFail() in E:\code\cqse-conqat-root\engine\eu.cqse.conqat.systemtest\test-src-cs\main\SystemtestSolution\UnitTests\UnitTest1.cs:line 36
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="0dc9d6a0-ad5f-4d21-bc8b-00d6d295598e" testId="f2652e3e-139c-a701-c595-8d150095fa6f" testName="TestCallStaticMethod" computerName="JUERGENS-LAPTOP" duration="00:00:00.0074650" startTime="2011-09-08T13:23:22.8301083+02:00" endTime="2011-09-08T13:23:22.8457084+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0dc9d6a0-ad5f-4d21-bc8b-00d6d295598e">
+      <Output>
+        <StdOut>Static method called</StdOut>
+      </Output>
+    </UnitTestResult>
+    <!-- test w/o outcome -->
+    <UnitTestResult
+    executionId="0a189672-c06c-4b5f-94d5-bd4420126dab"
+    testId="9f63e030-a22f-8539-9a95-00066096c258"
+    testName="TestExceptionWithoutOutcome"
+    computerName="DEVS882015"
+    startTime="2014-08-01T16:37:39.0631834+02:00"
+    endTime="2014-08-01T16:37:39.1725829+02:00"
+    testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b"
+    testListId="be528761-6856-47a0-9f03-e79192f35358"
+    relativeResultsDirectory="0a189672-c06c-4b5f-94d5-bd4420126dab">
+      <Output>
+        <ErrorInfo>
+          <Message>Unit Test Adapter threw exception:
+Type is not resolved for member 'Foo.Bar....'..</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

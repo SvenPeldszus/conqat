@@ -1,0 +1,8 @@
+METHOD: method: foo.bar (lines 1-11)
+  STATEMENT: _try: null (lines 2-4)
+    STATEMENT: simple statement: _with (lines 3-3)
+    STATEMENT: simple statement: write (lines 4-4)
+  STATEMENT: _when: null (lines 6-7)
+    STATEMENT: simple statement: write (lines 7-7)
+  STATEMENT: _when: null (lines 8-10)
+    STATEMENT: simple statement: write (lines 9-9)

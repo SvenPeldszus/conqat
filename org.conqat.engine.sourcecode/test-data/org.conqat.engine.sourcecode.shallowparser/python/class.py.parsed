@@ -1,0 +1,8 @@
+TYPE: class: Foo (lines 1-2)
+  STATEMENT: simple statement: pass (lines 2-2)
+TYPE: class: Foo2 (lines 4-5)
+  STATEMENT: simple statement: pass (lines 5-5)
+TYPE: class: Foo3 (lines 7-8)
+  STATEMENT: simple statement: pass (lines 8-8)
+TYPE: class: Foo (lines 10-10)
+  STATEMENT: simple statement: pass (lines 10-10)

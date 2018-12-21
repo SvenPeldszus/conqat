@@ -1,0 +1,11 @@
+# @ConQAT.Rating GREEN Hash: 95F974B14110756B6301F03E197A97BD
+
+name=ANTLR 3 Runtime
+description=ANother Tool for Language Recognition
+version=3.2
+license=BSD 3-Clause
+licence.website=http://www.antlr3.org/license.html
+website=http://www.antlr3.org/
+
+maven.group=org.antlr
+maven.artifact=antlr-runtime

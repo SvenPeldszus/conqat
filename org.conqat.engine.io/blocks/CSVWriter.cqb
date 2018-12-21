@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conqat xmlns="http://conqat.cs.tum.edu/ns/config">
+   <block-spec name="org.conqat.engine.io.CSVWriter">
+      <processor class="org.conqat.engine.io.CSVWriter" name="csv-writer">
+         <input ref="@display-list-editor3"/>
+         <file name="@filename"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.string.Concatenator" name="filename">
+         <part string="@output.dir"/>
+         <separator string="/"/>
+         <part string="@output.filename"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.util.DisplayListEditor" name="display-list-editor3">
+         <input ref="@input.ref"/>
+         <add key="@add.key"/>
+         <clear all="@clear-all-default.result"/>
+      </processor>
+      <param name="input">
+         <attr name="ref"/>
+      </param>
+      <param name="output">
+         <attr name="dir"/>
+         <attr name="filename"/>
+      </param>
+      <param name="add">
+         <doc>{@connDoc}</doc>
+         <attr name="key">
+            <doc>{@connDoc}</doc>
+         </attr>
+      </param>
+      <out name="csv-writer-result" ref="@csv-writer">
+         <doc>{@connDoc}</doc>
+      </out>
+      <param name="clear">
+         <doc>{@connDoc}</doc>
+         <attr name="all">
+            <doc>{@connDoc}</doc>
+         </attr>
+      </param>
+      <block name="clear-all-default" spec="org.conqat.engine.commons.dataflow.BooleanDefault">
+         <default value="true"/>
+         <actual value="@clear.all"/>
+      </block>
+   </block-spec>
+   <meta type="cq.edit">
+      <entries namespace="csv-writer">
+         <entry key="pos" value="168,276"/>
+      </entries>
+      <entries namespace="filename">
+         <entry key="pos" value="278,197"/>
+      </entries>
+      <entries namespace="display-list-editor3">
+         <entry key="pos" value="60,192"/>
+      </entries>
+      <entries namespace="input">
+         <entry key="pos" value="12,24"/>
+      </entries>
+      <entries namespace="output">
+         <entry key="pos" value="312,24"/>
+      </entries>
+      <entries namespace="add">
+         <entry key="pos" value="108,24"/>
+      </entries>
+      <entries namespace="csv-writer-result">
+         <entry key="pos" value="208,356"/>
+      </entries>
+      <entries namespace="clear">
+         <entry key="pos" value="204,24"/>
+      </entries>
+      <entries namespace="clear-all-default">
+         <entry key="pos" value="156,96"/>
+      </entries>
+   </meta>
+</conqat>

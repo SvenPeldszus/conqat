@@ -1,0 +1,10 @@
+# @ConQAT.Rating GREEN Hash: D533348E2CF7BA95E15CF803957131A5
+
+name=Apache FOP
+description=Formatting Objects Processor
+version=1.0
+license=Apache License 2.0
+website=http://xmlgraphics.apache.org/fop/
+
+maven.group=org.apache.xmlgraphics
+maven.artifact=fop

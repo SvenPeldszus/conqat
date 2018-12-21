@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conqat xmlns="http://conqat.cs.tum.edu/ns/config">
+   <block-spec name="org.conqat.engine.blocklib.dotnet.UnitTestPresentation">
+      <processor class="org.conqat.engine.commons.util.DisplayListEditor" name="display-list-editor">
+         <input ref="@depth-filter"/>
+         <hide root="false"/>
+         <remove key="test result"/>
+         <remove key="execution time"/>
+         <remove key="assessment"/>
+      </processor>
+      <block condition="@db.enabled" name="stacked-area-chart-layouter" spec="org.conqat.engine.html_presentation.StackedAreaChartLayouter">
+         <series color="#FF6633" ref="@failed.value-series" title="Failed tests"/>
+         <series color="#66CC66" ref="@passed.value-series" title="Passed tests"/>
+         <labels range-axis="" title="Unit test results"/>
+         <info description="Tests" groupId="Main" name="Tests"/>
+         <domain resolution="@domain.resolution"/>
+         <output dir="@output.dir"/>
+      </block>
+      <processor class="org.conqat.engine.html_presentation.layouters.TableLayouter" name="test-summary">
+         <input ref="@display-list-editor"/>
+         <info name="Does not matter"/>
+         <id-column label="Summary"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.filter.DepthFilter" name="depth-filter">
+         <input ref="@input.scope"/>
+         <max depth="0"/>
+      </processor>
+      <block condition="@db.enabled" name="failed" spec="org.conqat.engine.persistence.NamedValueSeriesChain">
+         <db connection="@db.connection"/>
+         <input key="failed" project="@info.groupId" scope="@input.scope"/>
+         <time value="@time.value"/>
+         <insertion-behavior lenient="true"/>
+      </block>
+      <processor class="org.conqat.engine.commons.util.DisplayListEditor" name="display-list-editor2">
+         <input ref="@input.scope"/>
+         <remove key="failed"/>
+         <remove key="passed"/>
+         <add key="Code Coverage"/>
+         <remove key="ignored"/>
+      </processor>
+      <block condition="@db.enabled" name="passed" spec="org.conqat.engine.persistence.NamedValueSeriesChain">
+         <db connection="@db.connection"/>
+         <input key="passed" project="@info.groupId" scope="@input.scope"/>
+         <time value="@time.value"/>
+         <insertion-behavior lenient="true"/>
+      </block>
+      <processor class="org.conqat.engine.html_presentation.layouters.PageMergeLayouter" name="page-merge-layouter">
+         <input ref="@stacked-area-chart-layouter.html-image"/>
+         <input ref="@test-summary"/>
+         <input ref="@test-details"/>
+         <info description="Unit tests" groupId="@info.groupId" name="Results of unit test execution"/>
+      </processor>
+      <processor class="org.conqat.engine.html_presentation.layouters.TableLayouter" name="test-details">
+         <input ref="@display-list-editor2"/>
+         <info description="Tests" name="Tests"/>
+         <id-column label="Test"/>
+         <display mode="TREE"/>
+         <showNodeIds value="false"/>
+      </processor>
+      <param name="input">
+         <attr name="scope"/>
+      </param>
+      <param name="domain">
+         <attr name="resolution"/>
+      </param>
+      <param name="time">
+         <attr name="value"/>
+      </param>
+      <param name="db">
+         <attr name="enabled"/>
+         <attr name="connection"/>
+      </param>
+      <param name="info">
+         <attr name="groupId"/>
+      </param>
+      <param name="output">
+         <attr name="dir"/>
+      </param>
+      <out name="image-descriptor" ref="@stacked-area-chart-layouter.image-descriptor"/>
+      <out name="html-result" ref="@page-merge-layouter"/>
+   </block-spec>
+   <meta type="cq.edit">
+      <entries namespace="display-list-editor">
+         <entry key="pos" value="96,492"/>
+      </entries>
+      <entries namespace="stacked-area-chart-layouter">
+         <entry key="pos" value="684,576"/>
+      </entries>
+      <entries namespace="test-summary">
+         <entry key="pos" value="96,564"/>
+      </entries>
+      <entries namespace="depth-filter">
+         <entry key="pos" value="96,420"/>
+      </entries>
+      <entries namespace="failed">
+         <entry key="pos" value="504,384"/>
+      </entries>
+      <entries namespace="display-list-editor2">
+         <entry key="pos" value="300,492"/>
+      </entries>
+      <entries namespace="passed">
+         <entry key="pos" value="720,384"/>
+      </entries>
+      <entries namespace="page-merge-layouter">
+         <entry key="pos" value="420,684"/>
+      </entries>
+      <entries namespace="test-details">
+         <entry key="pos" value="300,564"/>
+      </entries>
+      <entries namespace="image-descriptor">
+         <entry key="pos" value="756,756"/>
+      </entries>
+      <entries namespace="html-result">
+         <entry key="pos" value="444,780"/>
+      </entries>
+      <entries namespace="db">
+         <entry key="pos" value="804,192"/>
+      </entries>
+      <entries namespace="output">
+         <entry key="pos" value="1008,468"/>
+      </entries>
+      <entries namespace="time">
+         <entry key="pos" value="546,217"/>
+      </entries>
+      <entries namespace="domain">
+         <entry key="pos" value="900,468"/>
+      </entries>
+      <entries namespace="info">
+         <entry key="pos" value="216,108"/>
+      </entries>
+      <entries namespace="input">
+         <entry key="pos" value="408,84"/>
+      </entries>
+   </meta>
+</conqat>

@@ -1,0 +1,57 @@
+0: { BasicBlock 1
+  ---
+  a_3 = value( 0 )
+  d_-1 = ? [default init]
+  e_-1 = ? [default init]
+  ---
+  a_-1 = value( 1 )
+  ---
+  use(a_-1)
+  ---
+  b_3 = value( 0 )
+  ---
+  b_-1 = value( 2 )
+  ---
+  c_-1 = value( 1 )
+  ---
+  condition(yes=[], no=[], checked=[])
+  ---
+ } --> 1, 2
+1: { BasicBlock 2
+  ---
+  b_-2 = value( 3 )
+  ---
+  use(c_-1)
+  ---
+ } --> 2
+2: { BasicBlock 3
+  ---
+  d_2 = empty [default init]
+  ---
+  d_-3 = value( 2 )
+  ---
+  use(d_-3)
+  ---
+  e_-3 = empty [default init]
+  ---
+  use(a_-1)
+  condition(yes=[], no=[], checked=[])
+  ---
+ } --> 3, 4
+3: { BasicBlock 4
+  ---
+  e_-4 = value( 2 )
+  ---
+ } --> 5
+5: { BasicBlock 5
+  e_-5 = phi(e_-4, e_-6)
+  ---
+  use(e_-5)
+  ---
+  ---
+ } --> 
+4: { BasicBlock 6
+  ---
+  e_-6 = value( 3 )
+  ---
+ } --> 5

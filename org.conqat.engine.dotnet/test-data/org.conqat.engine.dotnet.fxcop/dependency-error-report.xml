@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="p:\conqat\bin\fxcop10\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="10.0">
+ <Localized>
+  <String Key="Category">Category</String>
+  <String Key="Certainty">Certainty</String>
+  <String Key="CollapseAll">Collapse All</String>
+  <String Key="CheckId">Check Id</String>
+  <String Key="Error">Error</String>
+  <String Key="Errors">error(s)</String>
+  <String Key="ExpandAll">Expand All</String>
+  <String Key="Help">Help</String>
+  <String Key="Line">Line</String>
+  <String Key="Messages">message(s)</String>
+  <String Key="LocationNotStoredInPdb">[Location not stored in Pdb]</String>
+  <String Key="Project">Project</String>
+  <String Key="Resolution">Resolution</String>
+  <String Key="Rule">Rule</String>
+  <String Key="RuleFile">Rule File</String>
+  <String Key="RuleDescription">Rule Description</String>
+  <String Key="Source">Source</String>
+  <String Key="Status">Status</String>
+  <String Key="Target">Target</String>
+  <String Key="Warning">Warning</String>
+  <String Key="Warnings">warning(s)</String>
+  <String Key="ReportTitle">Code Analysis Report</String>
+ </Localized>
+ <Exceptions>
+  <Exception Keyword="CA0055" Kind="AssemblyLoad">
+   <Type>Microsoft.FxCop.Common.AssemblyLoadException</Type>
+   <ExceptionMessage>Could not load X.Y.Z.dll.</ExceptionMessage>
+   <InnerType>Microsoft.FxCop.Sdk.InvalidMetadataException</InnerType>
+   <InnerExceptionMessage>The following error was encountered while reading module 'X.Y.Z': Assembly reference cannot be resolved: stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a.</InnerExceptionMessage>
+   <InnerStackTrace>   at Microsoft.FxCop.Sdk.Reader.HandleError(ModuleNode mod, String errorMessage)
+   at Microsoft.FxCop.Sdk.Reader.GetAssemblyFromReference(AssemblyReference assemblyReference)
+   at Microsoft.FxCop.Sdk.AssemblyReference.get_Assembly()
+   at Microsoft.FxCop.Sdk.Reader.GetTypeFromRef(Int32 i, Boolean expectStruct)
+   at Microsoft.FxCop.Sdk.Reader.DecodeAndGetTypeDefOrRefOrSpec(Int32 codedIndex)
+   at Microsoft.FxCop.Sdk.Reader.ParseTypeSignature(MemoryCursor sigReader, Boolean&amp; pinned, Boolean&amp; isTypeArgument)
+   at Microsoft.FxCop.Sdk.Reader.ParseTypeSignature(MemoryCursor sigReader)
+   at Microsoft.FxCop.Sdk.Reader.GetMethodFromDef(Int32 index, TypeNode declaringType)
+   at Microsoft.FxCop.Sdk.Reader.AddMethodsToType(TypeNode type, MethodPtrRow[] methodPtrs, Int32 start, Int32 end)
+   at Microsoft.FxCop.Sdk.Reader.GetTypeMembers(TypeNode type, Object handle)
+   at Microsoft.FxCop.Sdk.TypeNode.get_Members()
+   at Microsoft.FxCop.Engines.Introspection.BaseVisitor.VisitType(TypeNode type, TargetType target)
+   at Microsoft.FxCop.Engines.Introspection.LoadVisitor.VisitType(TypeNode type, TargetType target)
+   at Microsoft.FxCop.Engines.Introspection.BaseVisitor.VisitTypes(TypeNodeCollection types, TargetNamespaceDictionary targets)
+   at Microsoft.FxCop.Engines.Introspection.LoadVisitor.VisitModule(ModuleNode module, TargetModule target)
+   at Microsoft.FxCop.Engines.Introspection.BaseVisitor.VisitAssembly(AssemblyNode assembly, TargetFile target)
+   at Microsoft.FxCop.Engines.Introspection.LoadVisitor.VisitAssembly(AssemblyNode assembly, TargetFile target)
+   at Microsoft.FxCop.Engines.Introspection.LoadVisitor.Load(TargetFile target, Boolean buildTree, Boolean queueItems, AssemblyNode loadedAssembly)
+   at Microsoft.FxCop.Engines.Introspection.IntrospectionAnalysisEngine.LoadTargets(TargetFile target)
+   at Microsoft.FxCop.Common.EngineManager.LoadTargets(TargetFile target, Boolean resetCounts, String loadEngine)</InnerStackTrace>
+  </Exception>
+  <Exception Keyword="CA0052" Kind="Engine">
+   <Type>Microsoft.FxCop.Sdk.FxCopException</Type>
+   <ExceptionMessage>No targets were selected.</ExceptionMessage>
+  </Exception>
+  <Exception Keyword="CA0058" Kind="Engine">
+   <Type>Microsoft.FxCop.Sdk.FxCopException</Type>
+   <ExceptionMessage>The referenced assembly 'stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' could not be found. This assembly is required for analysis and was referenced by: X.Y.Z.dll.</ExceptionMessage>
+  </Exception>
+ </Exceptions>
+</FxCopReport>

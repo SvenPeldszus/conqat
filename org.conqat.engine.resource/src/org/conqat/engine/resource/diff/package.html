@@ -1,0 +1,22 @@
+<!--  
+  $Id: package.html 48647 2014-03-18 14:51:14Z deissenb $
+  @version $Rev: 48647 $
+  @ConQAT.Rating GREEN Hash: 005A672BA776F264540E5D22C917814E
+-->
+<body>
+	The processors in this package support the diffing of scopes. We
+	compare a
+	<i>main</i> resource tree (which is typically the development trunk of
+	the versioning system) with a
+	<i>comparee</i> (which is typically some older snapshot).
+	
+	TODO: I see some issues with this package:
+	<ul>
+	<li>The overall architecture, particularly the connection between ScopeDiffer and ScopeDiffInfo, is not entirely clear to me. 
+	We have some processors that behave baseline-style, others work on the ScopeDiffInfo and are mainly concerned with copying
+	stuff around.
+	<li>There is no explicit enum for the modification types (added, modified, ...) which makes the code redundant and inconsistent
+	<li>We appear to be in the middle of an unfinished review cycle with multiple contributors...
+	</ul>
+</body>
+

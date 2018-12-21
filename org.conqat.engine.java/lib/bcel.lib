@@ -1,0 +1,11 @@
+# @ConQAT.Rating GREEN Hash: A323FB7C820DFD975F11CA400EB97E4D
+
+name=Apache Commons BCEL
+description=Bytecode Engineering Library.
+website=http://asm.ow2.org/
+version=6.0
+remarks=taken from trunk (revision 1353988, 2012-06-26 14:23:55)
+license=Apache License 2.0
+
+maven.group=org.apache.bcel
+maven.artifact=bcel

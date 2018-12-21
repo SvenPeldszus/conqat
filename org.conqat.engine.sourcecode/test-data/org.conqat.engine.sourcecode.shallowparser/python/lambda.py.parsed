@@ -1,0 +1,6 @@
+STATEMENT: simple statement: foo (lines 1-1)
+STATEMENT: simple statement: nums (lines 3-3)
+METHOD: method: foo (lines 5-10)
+  METHOD: method: bar (lines 7-10)
+    STATEMENT: simple statement: print (lines 8-8)
+  STATEMENT: simple statement: bar (lines 10-10)

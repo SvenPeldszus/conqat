@@ -1,0 +1,10 @@
+# @ConQAT.Rating GREEN Hash: F4DCE74CB6B5A755B675D7A0443AB206
+
+name=BeanShell
+description=Bean Shell Scripting Engine
+website=http://www.beanshell.org/
+version=2.0b4
+license=LGPLv3
+
+maven.group=org.beanshell
+maven.artifact=bsh

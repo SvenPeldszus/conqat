@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+	$Id: block.cqb 41751 2012-09-18 11:55:06Z kinnen $
+	$Rev: 41751 $
+	@ConQAT.Rating RED Hash: abc
+-->
+<conqat xmlns="http://conqat.cs.tum.edu/ns/config">
+   <block-spec name="org.conqat.engine.resource.CachedContentFilter">
+      <doc>This block is a wrapper around ContentFilter, saving all filtered elements' canonical paths into a file.  This file is used to pre-filter elements in the next execution. This way, elements that were filtered in the past, are not analyzed again. </doc>
+      <processor class="org.conqat.engine.resource.filters.CachedElementFilter" name="cached-element-filter">
+         <blacklist-file path="@blacklist-file.path"/>
+         <input ref="@input.ref"/>
+         <enable processor="@enable.processor"/>
+      </processor>
+      <processor class="org.conqat.engine.resource.filters.ElementFilterCacheUpdater" name="element-filter-cache-updater">
+         <blacklist-file path="@blacklist-file.path"/>
+         <input ref="@content-filter"/>
+         <unfiltered scope="@input.ref"/>
+         <enable processor="@update-condition"/>
+      </processor>
+      <processor class="org.conqat.engine.resource.filters.ContentFilter" name="content-filter">
+         <pattern list="@pattern.list"/>
+         <invert value="@invert.value"/>
+         <input ref="@cached-element-filter"/>
+         <enable processor="@enable.processor"/>
+      </processor>
+      <param name="blacklist-file">
+         <doc>{@connDoc}</doc>
+         <attr name="path">
+            <doc>{@connDoc}</doc>
+         </attr>
+      </param>
+      <param name="input">
+         <doc>{@connDoc}</doc>
+         <attr name="ref">
+            <doc>{@connDoc}</doc>
+         </attr>
+      </param>
+      <out name="result" ref="@element-filter-cache-updater">
+         <doc>{@connDoc}</doc>
+      </out>
+      <param name="pattern">
+         <doc>{@connDoc}</doc>
+         <attr name="list">
+            <doc>{@connDoc}</doc>
+         </attr>
+      </param>
+      <param name="enable">
+         <doc>{@connDoc}</doc>
+         <attr name="processor">
+            <doc>{@connDoc}</doc>
+         </attr>
+      </param>
+      <param name="invert">
+         <doc>{@connDoc}</doc>
+         <attr name="value">
+            <doc>{@connDoc}</doc>
+         </attr>
+      </param>
+      <param name="update">
+         <doc>If set to true, the blacklist file is updated. [Default is true]</doc>
+         <attr name="blacklist">
+            <doc>{@connDoc}</doc>
+         </attr>
+      </param>
+      <processor class="org.conqat.engine.commons.bool.AndCondition" name="update-condition">
+         <input value="@enable.processor"/>
+         <input value="@checked-optional.value"/>
+      </processor>
+      <block name="checked-optional" spec="org.conqat.engine.commons.dataflow.CheckedOptional">
+         <input value="@update.blacklist"/>
+      </block>
+   </block-spec>
+   <meta type="cq.edit">
+      <entries namespace="cached-element-filter">
+         <entry key="pos" value="144,108"/>
+      </entries>
+      <entries namespace="element-filter-cache-updater">
+         <entry key="pos" value="144,276"/>
+      </entries>
+      <entries namespace="content-filter">
+         <entry key="pos" value="144,192"/>
+      </entries>
+      <entries namespace="blacklist-file">
+         <entry key="pos" value="132,24"/>
+      </entries>
+      <entries namespace="input">
+         <entry key="pos" value="228,24"/>
+      </entries>
+      <entries namespace="result">
+         <entry key="pos" value="184,356"/>
+      </entries>
+      <entries namespace="pattern">
+         <entry key="pos" value="0,156"/>
+      </entries>
+      <entries namespace="enable">
+         <entry key="pos" value="324,24"/>
+         <entry key="edges_invisible" value="false"/>
+      </entries>
+      <entries namespace="invert">
+         <entry key="pos" value="36,108"/>
+      </entries>
+      <entries namespace="update">
+         <entry key="pos" value="444,24"/>
+      </entries>
+      <entries namespace="update-condition">
+         <entry key="pos" value="324,192"/>
+      </entries>
+      <entries namespace="checked-optional">
+         <entry key="pos" value="408,108"/>
+      </entries>
+   </meta>
+</conqat>

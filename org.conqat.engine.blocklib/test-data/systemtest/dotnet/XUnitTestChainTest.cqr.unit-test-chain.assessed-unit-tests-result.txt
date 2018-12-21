@@ -1,0 +1,110 @@
+**********Summary**********
+#Nodes:4
+Root display List: assessment, execution time, test result, failed, passed, ignored, report date
+
+ Name: 
+	assessment=[G: 2, Y: 1, R: 1]
+	execution time=NULL
+	test result=NULL
+	failed=1
+	passed=2
+	ignored=1
+	report date=Sat Jan 14 10:21:10 CET 2012
+
+Pickles.TestHarness.xUnit.AdditionFeature Name: Pickles.TestHarness.xUnit.AdditionFeature
+	assessment=[G: 2, Y: 1, R: 1]
+	execution time=NULL
+	test result=NULL
+	failed=1
+	passed=2
+	ignored=1
+	report date=NULL
+
+Pickles.TestHarness.xUnit.AdditionFeature.AddTwoNumbers Name: AddTwoNumbers
+	assessment=GREEN
+	execution time=0.153
+	test result=Pass
+		
+		Given I have entered 50 into the calculator
+		-> done: Steps.GivenIHaveEnteredSomethingIntoTheCalculator(50) (0.0s)
+		And I have entered 70 into the calculator
+		-> done: Steps.GivenIHaveEnteredSomethingIntoTheCalculator(70) (0.0s)
+		When I press add
+		-> done: Steps.WhenIPressAdd() (0.0s)
+		Then the result should be 120 on the screen
+		-> done: Steps.ThenTheResultShouldBePass(120) (0.0s)
+	failed=0
+	passed=1
+	ignored=0
+	report date=NULL
+
+Pickles.TestHarness.xUnit.AdditionFeature.AddingSeveralNumbers(firstNumber: "40", secondNumber: "50", result: "90", exampleTags: System.String[]) Name: AddingSeveralNumbers(firstNumber: "40", secondNumber: "50", result: "90", exampleTags: System.String[])
+	assessment=GREEN
+	execution time=0.006
+	test result=Pass
+		
+		Given I have entered 40 into the calculator
+		-> done: Steps.GivenIHaveEnteredSomethingIntoTheCalculator(40) (0.0s)
+		And I have entered 50 into the calculator
+		-> done: Steps.GivenIHaveEnteredSomethingIntoTheCalculator(50) (0.0s)
+		When I press add
+		-> done: Steps.WhenIPressAdd() (0.0s)
+		Then the result should be 90 on the screen
+		-> done: Steps.ThenTheResultShouldBePass(90) (0.0s)
+	failed=0
+	passed=1
+	ignored=0
+	report date=NULL
+
+Pickles.TestHarness.xUnit.AdditionFeature.AddingSeveralNumbers(firstNumber: "60", secondNumber: "70", result: "130", exampleTags: System.String[]) Name: AddingSeveralNumbers(firstNumber: "60", secondNumber: "70", result: "130", exampleTags: System.String[])
+	assessment=YELLOW
+	execution time=0
+	test result=Skip
+	failed=0
+	passed=0
+	ignored=1
+	report date=NULL
+
+Pickles.TestHarness.xUnit.AdditionFeature.FailToAddTwoNumbers Name: FailToAddTwoNumbers
+	assessment=RED
+	execution time=0.023
+	test result=Fail
+		
+		Given I have entered 50 into the calculator
+		-> done: Steps.GivenIHaveEnteredSomethingIntoTheCalculator(50) (0.0s)
+		And I have entered -1 into the calculator
+		-> done: Steps.GivenIHaveEnteredSomethingIntoTheCalculator(-1) (0.0s)
+		When I press add
+		-> done: Steps.WhenIPressAdd() (0.0s)
+		Then the result should be -50 on the screen
+		-> error: This is a fake failure message
+		
+		
+		
+		System.InvalidOperationException : This is a fake failure message
+		
+		
+		at Pickles.TestHarness.xUnit.Steps.ThenTheResultShouldBePass(Int32 result) in C:\dev\pickles-results-harness\Pickles.TestHarness\Pickles.TestHarness.xUnit\Steps.cs:line 26
+		at lambda_method(Closure , IContextManager , Int32 )
+		at TechTalk.SpecFlow.Bindings.MethodBinding.InvokeAction(IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
+		at TechTalk.SpecFlow.Bindings.StepDefinitionBinding.Invoke(IContextManager contextManager, ITestTracer testTracer, Object[] arguments, TimeSpan& duration)
+		at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+		at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepArgs stepArgs)
+		at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+		at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors()
+		at Pickles.TestHarness.xUnit.AdditionFeature.ScenarioCleanup() in C:\dev\pickles-results-harness\Pickles.TestHarness\Pickles.TestHarness.xUnit\Addition.feature.cs:line 0
+		at Pickles.TestHarness.xUnit.AdditionFeature.FailToAddTwoNumbers() in c:\dev\pickles-results-harness\Pickles.TestHarness\Pickles.TestHarness.xUnit\Addition.feature:line 18
+	failed=1
+	passed=0
+	ignored=0
+	report date=NULL
+
+c:\dev\pickles-results-harness\Pickles.TestHarness\Pickles.TestHarness.xUnit\bin\Debug\Pickles.TestHarness.xUnit.dll Name: c:\dev\pickles-results-harness\Pickles.TestHarness\Pickles.TestHarness.xUnit\bin\Debug\Pickles.TestHarness.xUnit.dll
+	assessment=[G: 2, Y: 1, R: 1]
+	execution time=NULL
+	test result=NULL
+	failed=1
+	passed=2
+	ignored=1
+	report date=Sat Jan 14 10:21:10 CET 2012
+

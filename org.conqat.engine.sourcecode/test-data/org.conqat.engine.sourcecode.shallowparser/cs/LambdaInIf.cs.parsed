@@ -1,0 +1,8 @@
+TYPE: class: Foo (lines 1-14)
+  METHOD: method: ValidateName (lines 3-13)
+    STATEMENT: local variable: allNames (lines 5-5)
+    STATEMENT: local variable: name (lines 6-6)
+    STATEMENT: if: null (lines 8-12)
+      METHOD: lambda: null (lines 8-8)
+        STATEMENT: lambda expression: null (lines 8-8)
+      STATEMENT: simple statement: yield (lines 10-11)

@@ -1,0 +1,11 @@
+# @ConQAT.Rating GREEN Hash: 41AE062A734416EF44BF1801D540154F
+
+name=Log4J
+description=Log4J Logging Facility.
+version=1.2.16
+website=http://logging.apache.org/log4j
+license=Apache License 2.0
+
+# Version 2 is in maven.group: org.apache.logging.log4j  
+maven.group=log4j
+maven.artifact=log4j

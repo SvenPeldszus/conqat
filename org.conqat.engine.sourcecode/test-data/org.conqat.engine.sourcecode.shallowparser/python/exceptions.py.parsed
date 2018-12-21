@@ -1,0 +1,4 @@
+STATEMENT: try: null (lines 1-2)
+  STATEMENT: simple statement: print (lines 2-2)
+STATEMENT: except: null (lines 3-4)
+  STATEMENT: simple statement: pass (lines 4-4)

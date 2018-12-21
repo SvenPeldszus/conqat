@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+	$Id: HelloWorld.cqb 47756 2014-01-27 12:02:34Z pfaller $
+	$Rev: 47756 $
+	@ConQAT.Rating RED Hash: abc
+-->
+<conqat xmlns="http://conqat.cs.tum.edu/ns/config">
+   <block-spec name="org.conqat.engine.blocklib.commons.HelloWorld">
+      <processor class="org.conqat.engine.html_presentation.HTMLPresentation" name="html-presentation">
+         <output dir="@output.dir"/>
+         <result ref="@plain-text-layouter"/>
+      </processor>
+      <processor class="org.conqat.engine.html_presentation.layouters.PlainTextLayouter" name="plain-text-layouter">
+         <text value="ConQAT was successfully installed."/>
+         <info description="This is only a dummy output of ConQAT. No analysis was perforemd. " groupId="Main" name="Hello, World!"/>
+      </processor>
+      <param name="output">
+         <doc>{@connDoc}</doc>
+         <attr name="dir">
+            <doc>{@connDoc}</doc>
+         </attr>
+      </param>
+   </block-spec>
+   <meta type="cq.edit">
+      <entries namespace="html-presentation">
+         <entry key="pos" value="347,488"/>
+      </entries>
+      <entries namespace="plain-text-layouter">
+         <entry key="pos" value="348,372"/>
+      </entries>
+      <entries namespace="output">
+         <entry key="pos" value="228,420"/>
+      </entries>
+   </meta>
+</conqat>

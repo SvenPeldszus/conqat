@@ -1,0 +1,10 @@
+# @ConQAT.Rating GREEN Hash: D019AC25A153E525017D8E14F4F6FCAD
+
+name=Closure Compiler
+description=Google Closure Compiler is a JavaScript optimizing compiler.
+website=http://code.google.com/p/closure-compiler/
+version=2013/11/18
+
+license=Apache License 2.0
+
+remark=Manually removed google commons (com.google.common.*) and args4j (org.kohsuke.*)

@@ -1,0 +1,1110 @@
+#% text_encoding = iso8859_1
+_package user
+# Copyright © 2004 Minto Spatial Solutions Ltd.
+#
+# This software is released under the terms of version 2 of the
+# GNU General Public License.  The full license text is
+# provided in the license.txt file in the mss product
+# directory, and is also available at http://www.fsf.org.
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+##
+## mss_map_trail_addon_plugin
+##
+## Add-on functions to the core map_trail_plugin.
+##
+
+def_slotted_exemplar(:mss_map_trail_addon_plugin,
+{
+	{:owner, _unset, :readable},
+	{:dynamic_options, _unset, :readable},
+	{:probes_to_draw, _unset, :readable},
+	{:probes_to_undraw, _unset, :readable},
+	{:interaction_modes, _unset, :readable},
+	{:preselected_sectors, _unset, :readable},
+	{:selected_sectors, _unset, :readable},
+	{:offset_sectors, _unset, :readable}
+},
+{:mss_application_databus_plugin})
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+##
+## holds the the name of the map_trail plugin
+##
+mss_map_trail_addon_plugin.define_property(
+	:map_trail_name, :string,
+	"name of map trail plugin",
+	_false, _false, :map_trail)
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+mss_map_trail_addon_plugin.define_shared_constant(
+	:application_databus_consumer_data_types,
+	{:map_selection},
+	:public)
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+mss_map_trail_addon_plugin.define_shared_constant(
+	:action_definitions,
+	keyed_set.new_with(
+		sw_action_def.new(:extend_parallel,
+				  :image, {:extend_parallel, :mss_map_trail},
+				  :action_message, :|extend_parallel()|),
+		sw_action_def.new(:offset_parallel,
+				  :image, {:offset_parallel, :mss_map_trail},
+				  :action_message, :|offset_parallel()|)),
+	:public)
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+mss_map_trail_addon_plugin.define_shared_constant(
+	:databus_producer_data_types,
+	##
+	## The various types this plugin puts on the databus.
+	##
+	{:mss_dynamic_trail},
+	:public)
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+mss_map_trail_addon_plugin.define_shared_constant(
+	:core_default_options,
+	## Default option values.
+	property_list.new_with(
+		:corner_style, :acute,
+		:discrete_spacing, 10000.0,
+		:offset_discrete_spacing, 1000.0),
+	:public)
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+mss_map_trail_addon_plugin.define_shared_constant(
+	:int!probe_style,
+	text_style.new_with_properties(:colour, colour.called(:black)),
+	:private)
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.init(name, a_framework)
+	## 
+	## 
+	
+	_super.init(name, a_framework)
+	_for opt_key, opt_val _over _self.core_default_options.fast_keys_and_elements()
+	_loop
+		_self.set_option(opt_key, opt_val)
+	_endloop 
+	.dynamic_options << property_list.new()
+	.probes_to_draw << rope.new()
+	.probes_to_undraw << rope.new()
+	_self.init_interaction_modes()
+	_return _self
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.init_interaction_modes()
+	## 
+	## Initializes the mss_extend_parallel interaction mode.
+	##
+
+	pl << .interaction_modes << property_list.new()
+
+	m << interaction_mode.new(:mss_extend_parallel, _unset)
+	m.one_shot? << _true
+	m.prompt_string << _self.message(:extend_parallel_prompt)
+	_for i _over 0.upto(7)
+	_loop
+		_if i = 2
+		_then
+			modifier << "_c"
+		_elif i = 1 _orif i = 3
+		_then
+			modifier << "_s"
+		_else
+			modifier << ""
+		_endif 
+		m.set_cursor(i, :extend_parallel, :mss_map_trail)
+		m.set_xor_worker(_self, _unset, _unset, i)
+		m.set_click_action(:left, i, :ep_click)
+		m.set_press_action(:left, i, :ep_press + modifier)
+		m.set_drag_actions(:left, i, {:ep_pdr_press, :ep_pdr_drag + modifier, :ep_pdr_release})
+	_endloop 
+	m.add_event_handler(:action, _self, {:|perform_safely()|, :|handle_extend_parallel_action()|})
+	pl[:extend_parallel] << m
+	
+	m << interaction_mode.new(:mss_offset_parallel, _unset)
+	m.one_shot? << _true
+	m.prompt_string << _self.message(:offset_parallel_prompt)
+	_for i _over 0.upto(7)
+	_loop
+		_if i = 2
+		_then
+			modifier << "_c"
+		_elif i = 1 _orif i = 3
+		_then
+			modifier << "_s"
+		_else
+			modifier << ""
+		_endif 
+		m.set_cursor(i, :offset_parallel, :mss_map_trail)
+		m.set_xor_worker(_self, _unset, _unset, i)
+		m.set_click_action(:left, i, :op_click)
+		m.set_press_action(:left, i, :op_press + modifier)
+		m.set_drag_actions(:left, i, {:op_pdr_press, :op_pdr_drag + modifier, :op_pdr_release})
+	_endloop 
+	m.add_event_handler(:action, _self, {:|perform_safely()|, :|handle_offset_parallel_action()|})
+	pl[:offset_parallel] << m
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.post_build_gui()
+	## 
+	## Forge dependency with owning map_trail plugin.
+	##
+
+	.owner << _self.framework.plugin(_self.map_trail_name)
+	.owner.add_dependent(_self)
+
+	m << .interaction_modes[:extend_parallel]
+	_if (act << .owner.map_manager.action(:trail_probe_free)) _isnt _unset
+	_then
+		_for i _over 0.upto(7)
+		_loop
+			m.set_key_action(%f, i, act)
+		_endloop
+	_endif
+	
+	_self.manage_actions()
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.get_length_display_format()
+	## 
+	## 
+
+	_return .owner.get_length_display_format()
+		
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.get_preferences()
+	## 
+	## Return preferences to be stored persistently.
+	##
+
+	pl << property_list.new_with(
+		      :corner_style, _self.get_option(:corner_style),
+		      :discrete_spacing, _self.get_option(:discrete_spacing),
+		      :offset_discrete_spacing, _self.get_option(:offset_discrete_spacing))
+	_return pl
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.set_preferences(pl)
+	## 
+	## Restore self's preferences based on the contents of PL.
+	##
+
+	_if _not pl.is_kind_of?(property_list)
+	_then
+		_return
+	_endif 
+
+	_for key _over {:corner_style, :discrete_spacing, :offset_discrete_spacing}.fast_elements()
+	_loop
+		_if (val << pl[key]) _isnt _unset
+		_then
+			_self.set_option(key, val)
+		_endif
+	_endloop
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.options_panel(name)
+	## 
+	## Creates and returns the option panel as identified by
+	## NAME.
+	##
+
+	_if name _is :main_options
+	_then
+		_return mss_map_trail_addon_options_panel.new(_self)
+	_endif
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.current_trail
+	## 
+	## Obtain this from the owning map_trail plugin.
+	##
+
+	_return .owner.current_trail
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.note_change(who, what, data)
+	## 
+	## 
+
+	_if what _is :current_trail
+	_then
+		_self.manage_actions()
+	_endif
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.sw_databus_data_available(data_type_name, data)
+	## 
+	## 
+
+	_if data_type_name _is :map_selection
+	_then
+		_self.manage_actions()
+	_endif 
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.manage_actions()
+	## 
+	## Manages the actions of this plugin.
+	##
+
+	has_trail? << (tr << _self.current_trail) _isnt _unset
+	has_sel? << (map_sel_info << _self.application_databus_request_data(:map_selection)) _isnt _unset _andif
+		    map_sel_info[2].an_element() _isnt _unset
+	
+	_self.action(:extend_parallel).enabled? << (has_sel? _andif has_trail? _andif tr.n_points > 0)
+	_self.action(:offset_parallel).enabled? << (has_trail? _andif tr.n_points >= 2)
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.extend_parallel()
+	## 
+	## Initiate the extend_parallel interaction mode.
+	##
+
+	_if (tr << _self.current_trail) _is _unset _orif
+	    tr.n_points = 0 
+	_then
+		condition.raise(:user_error, :string, _self.message(:no_current_trail))
+	_endif
+
+	# Try to construct a sector rope that is offset from the
+	# selected geometries, and running through the last trail point.
+	_if (cs << tr.owner.current_selection).size = 0
+	_then
+		condition.raise(:user_error, :string, _self.message(:no_current_selection))
+	_endif
+
+	# Logic is different for areas than for chains, so pre-process here.
+	candidates << rope.new()
+	got_areas? << _false
+	got_chains? << _false 
+	_for i _over cs.fast_elements()
+	_loop
+		_if i.geom_category _is :area
+		_then
+			candidates.add_last(i)
+			got_areas? << _true
+		_elif i.geom_category _is :linear
+		_then
+			candidates.add_last(i)
+			got_chains? << _true
+		_endif
+	_endloop
+
+	_if got_chains?
+	_then
+		sr << _self.preselected_sectors_for_chains(candidates)
+		.preselected_sectors << {sr, :chains}
+	_elif got_areas?
+	_then
+		sr << _self.preselected_sectors_for_areas(candidates)
+		.preselected_sectors << {sr, :areas}
+	_else
+		condition.raise(:user_error, :string, _self.message(:no_current_selection))
+	_endif
+
+	.selected_sectors << _unset
+	
+	# Extend parallel requires that the last vertex in the trail is
+	# current.
+	_if tr.last_vertex().coord ~= tr.current_coordinate
+	_then
+		tr.select_last_vertex()
+	_endif
+
+	# Now that all preconditions have been passed, switch to
+	# extend_parallel mode for all GUIs that manage this trail.
+	.dynamic_options.empty()
+	.probes_to_draw.empty()
+	.probes_to_undraw.empty()
+	_for a_gui _over .owner.map_manager.map_gui_frameworks_for_trail(tr)
+	_loop
+		a_gui.set_interaction_mode(.interaction_modes[:extend_parallel])
+	_endloop
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.preselected_sectors_for_chains(candidates)
+	## 
+	## Given CANDIDATES (a collection of chains and areas),
+	## determine a single continuous sector rope to use as the
+	## basis for offsetting.
+	##
+
+	# N.B. if CANDIDATES contains both areas and chains, this will
+	# almost surely fail, but give it a try anyways...
+	
+	sr << sector_rope.new()
+	_if sr.concatenate_geometries(candidates) _is _false
+	_then
+		condition.raise(:user_error, :string, _self.message(:not_continuous))
+	_endif
+	_return sr
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.preselected_sectors_for_areas(candidates)
+	## 
+	## Given CANDIDATES (a collection of areas), determine a single
+	## continuous sector rope to use as the basis for offsetting.
+	## 
+	
+	union_area << _unset
+	_for i _over candidates.fast_elements()
+	_loop
+		_if union_area _is _unset
+		_then
+			union_area << i
+		_else
+			union_area << union_area.union(i)
+		_endif
+	_endloop
+
+	_if union_area.npolygons > 1
+	_then
+		condition.raise(:user_error, :string, _self.message(:not_continuous))
+	_endif
+
+	# Ensure that the resulting sectors are positioned such that
+	# they extend half-way around the area on each side.
+	base_sectors << union_area.sectors.deep_copy()
+	base_ll << base_sectors.line_length
+	
+	last_coord << _self.current_trail.last_coord
+	int_coord << base_sectors.segpoint_near(last_coord)
+	dist_to_int << base_sectors.distance_to_coordinate(int_coord)
+
+	_if dist_to_int = base_ll / 2.0
+	_then
+		# Seems very unlikely, but this just means that we have
+		# happened to already start the process at the midpoint.
+		# The sectors can be left as-is.
+		sectors_for_offset << base_sectors.deep_copy()
+		
+	_elif dist_to_int < base_ll / 2.0
+	_then
+		splits << base_sectors.split_at_distances({dist_to_int, dist_to_int + base_ll / 2.0})
+		sectors_for_offset << sector_rope.new()
+		sectors_for_offset.add_all_last(splits[3])
+		sectors_for_offset.add_all_last(splits[1])
+		sectors_for_offset.add_all_last(splits[2])
+	_else
+		splits << base_sectors.split_at_distances({dist_to_int - base_ll / 2.0, dist_to_int})
+		sectors_for_offset << sector_rope.new()
+		sectors_for_offset.add_all_last(splits[2])
+		sectors_for_offset.add_all_last(splits[3])
+		sectors_for_offset.add_all_last(splits[1])
+	_endif 	
+
+	_return sectors_for_offset
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.handle_extend_parallel_action(action_name, start_coord,
+								 end_coord, window)
+	## 
+	## Main handler for all PDR actions when selfs extend_parallel
+	## interaction mode is active.
+	##
+
+	_local me << _self
+	_block
+		_handling error _with
+		_proc(cond)
+			_import me, window
+			me.reset_interaction(:extend_parallel, window)
+			cond.continue_handling()
+		_endproc
+
+		_if {:ep_press, :ep_press_c, :ep_press_s}.includes?(action_name)
+		_then
+			_if action_name _is :ep_press _then modmask << _unset
+			_elif action_name _is :ep_press_c _then modmask << :ctrl
+			_else modmask << :shift _endif 
+			.dynamic_options[:modmask] << modmask
+			
+			# When the press is made, evaluate the selected geometries, and
+			# generate a construction line parallel to those geometries
+			# that runs through the last trail point.
+			_self.figure_selected_sectors(window)
+
+			# Determine the parallel offset sectors, and draw them.
+			_self.figure_offset_sectors(end_coord, window)
+			_self.xor_sectors(.offset_sectors)
+			_self.build_probes(end_coord, :extend_parallel)
+			_self.xor_probes(window)
+			
+			# Notify that the trail has dynamically changed.
+			_self.databus_make_data_available(
+				:mss_dynamic_trail,
+				{_self.current_trail, .offset_sectors, window})
+			
+		_elif {:ep_pdr_drag, :ep_pdr_drag_c, :ep_pdr_drag_s}.includes?(action_name)
+		_then
+			_if action_name _is :ep_pdr_drag _then modmask << _unset
+			_elif action_name _is :ep_pdr_drag_c _then modmask << :ctrl
+			_else modmask << :shift _endif 
+			.dynamic_options[:modmask] << modmask
+
+			# Undraw the old parallel offset sectors, recompute them, and
+			# redraw them.
+			_self.xor_sectors(.offset_sectors)
+			_self.figure_offset_sectors(end_coord, window)
+			_self.xor_sectors(.offset_sectors)
+			_self.build_probes(end_coord, :extend_parallel)
+			_self.xor_probes(window)
+			
+			# Notify that the trail has dynamically changed.
+			_self.databus_make_data_available(
+				:mss_dynamic_trail,
+				{_self.current_trail, .offset_sectors, window})
+			
+		_elif action_name _is :ep_click _orif
+		      action_name _is :ep_pdr_release
+		_then
+			# Undraw the old parallel offset sectors.
+			_self.xor_sectors(.offset_sectors)
+			_self.xor_probes(window)
+
+			# Assuming that things have completed OK, append these offset
+			# sectors to the current trail.
+			_if .offset_sectors _isnt _unset 
+			_then
+				_self.current_trail.concatenate_geometries(.offset_sectors)
+			_endif
+
+			# One-shot probes are shared with the map_trail.
+			_self.current_trail.clear_one_shot_probe()
+		_endif
+	_endblock
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.reset_interaction(mode, _optional window)
+	## 
+	## Terminate self's PDR interaction.
+	##
+
+	_try
+		.interaction_modes[mode].end_one_shot_interaction()
+	_when error
+	_endtry 
+	.probes_to_draw.empty()
+	_if window _isnt _unset
+	_then 
+		_self.xor_probes(window)
+	_endif 
+	.probes_to_undraw.empty()
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.build_probes(a_coord, mode)
+	## 
+	## Build a list of descriptive text for dynamically displaying
+	## the state of self at A_COORD.  MODE is :extend_parallel or
+	## :offset_parallel. 
+	##
+
+	tr << _self.current_trail
+	_if (ldf << .dynamic_options[:length_display_format]) _is _unset
+	_then
+		ldf << .dynamic_options[:length_display_format] << _self.get_length_display_format()
+	_endif
+	_if (us << .dynamic_options[:unit_system]) _is _unset
+	_then
+		us << .dynamic_options[:unit_system] << unit_system.new(tr.world.unit, ldf.unit)
+	_endif
+
+	_if mode _is :extend_parallel
+	_then 
+		tr_len << tr.sectors.line_length
+		_if .offset_sectors _isnt _unset
+		_then 
+			dyn_len << .offset_sectors.line_length
+		_else
+			dyn_len << 0.0
+		_endif 
+		
+		str << _self.message(:total_length, ldf.format(us.convert_output(tr_len + dyn_len)))
+		.probes_to_draw.add_last({str, a_coord})
+		
+		str << _self.message(:segment_length, ldf.format(us.convert_output(dyn_len)))
+		.probes_to_draw.add_last({str, a_coord})	
+		
+		_if (int_probe << .dynamic_options[:int_probe]) _isnt _unset
+		_then
+			.probes_to_draw.add_last({int_probe.string, int_probe.coord})
+		_endif
+
+	_elif mode _is :offset_parallel
+	_then
+		_if (offset_dist << .dynamic_options[:offset_dist]) _isnt _unset
+		_then 
+			str << ldf.format(us.convert_output(offset_dist))
+			.probes_to_draw.add_last({str, a_coord})
+		_endif 
+	_endif
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.xor_probes(a_window)
+	## 
+	## Undraw and redraw descriptive text relating to self's
+	## current state on A_WINDOW.
+	##
+
+	_self.xor_probe_list(.probes_to_undraw, a_window)
+	.probes_to_undraw.empty()
+	_self.xor_probe_list(.probes_to_draw, a_window)
+	.probes_to_undraw.add_all_last(.probes_to_draw)
+	.probes_to_draw.empty()
+
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.xor_probe_list(probe_list, a_window)
+	## 
+	## 
+
+	st << _self.int!probe_style
+	base_coord << _unset 
+	_for a_probe _over probe_list.fast_elements()
+	_loop
+		_if (a_string << a_probe[1]) _is _unset _orif
+		    a_string = ""
+		_then
+			_continue
+		_endif
+		_if base_coord _is _unset
+		_then
+			base_coord << a_window.pixel_for(a_probe[2]) + pixel_coordinate.new(8, 0)
+		_else
+			base_coord +<< pixel_coordinate.new(0, -12)
+		_endif
+		a_window.xor_text(st, base_coord.x, base_coord.y, a_string, _unset, _unset)
+	_endloop
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.xor_sectors(sr)
+	## 
+	## XOR self's dynamic offset sectors using standard trail styles.
+	##
+
+	_if sr _is _unset
+	_then
+		_return
+	_endif
+	tr << _self.current_trail
+	a_style << tr.current_styles[:normal_line_style].actual_line_style
+	tr.owner.xor_sector_rope_transform(a_style, sr, tr.curve_tolerance)
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.figure_selected_sectors(a_window)
+	## 
+	## Given a pointing in A_WINDOW, determine .selected_sectors by
+	## starting with .preselected_sectors, offsetting, and
+	## extending an amount that is appropriate for the view scale
+	## of the window.
+	##
+
+	mv << a_window.user_data
+	cur_bounds << mv.current_view_bounds
+
+	# First step: extend .preselected_sectors so that it goes
+	# completely through the map view.
+	ext_sectors << .preselected_sectors[1].deep_copy()
+	_if .preselected_sectors[2] _is :areas
+	_then
+		# In this case, don't need to extend, because areas form a
+		# closed loop.
+	_else 
+		add_length << cur_bounds.bottom_left.distance_to(cur_bounds.top_right) * 2.0
+		a1 << ext_sectors.angle_near(c12 << ext_sectors.first_coord)
+		a2 << ext_sectors.angle_near(c21 << ext_sectors.last_coord)
+		dc11 << transform.rotate(a1).convert(coordinate.new(-add_length, 0))
+		dc22 << transform.rotate(a2).convert(coordinate.new(add_length, 0))
+		c11 << c12 + dc11
+		c22 << c21 + dc22
+		ext_sectors.prepend_sectors(sector_rope.new_with(sector.new_with(c11, c12)))
+		ext_sectors.append_sectors(sector_rope.new_with(sector.new_with(c21, c22)))
+	_endif
+	
+	# For debugging: the following will draw the resulting line on-screen.
+	#mv.xor_sector_rope_transform(line_style, ext_sectors)
+
+	# Determine the distance and side of the last trail point
+	# relative to ext_sectors.
+	p1 << _self.current_trail.last_coord
+	(angle, p2, dist) << ext_sectors.angle_near(p1)
+	rel_angle << (p1.angle_to(p2) - angle).normalise(-1.0.pi, 1.0.pi)
+	negate_distance? << _false 
+	_if rel_angle > 0 _andif rel_angle < 1.0.pi
+	_then
+		negate_distance? << _true 
+	_endif
+
+	# If rel_angle is not exactly half pi, then one of two things
+	# is happening:
+	# 1) The pointing is past the start/end of EXT_SECTORS (which is
+	#    rather unlikely since EXT_SECTORS has been extended to be
+	#    beyond the screen bounds), or
+	# 2) The pointing is on an outside corner of EXT_SECTORS.
+	_if (rel_angle.abs - 1.0.half_pi).abs > 0.00001
+	_then
+		_if p2 = ext_sectors.first_coord _orif
+		    p2 = ext_sectors.last_coord
+		_then
+			# Pointing past start/end: simple adjustment.
+			dist *<< rel_angle.sin.abs
+		_else
+			# Complex: need to generate lines for the forward angle and the
+			# reverse angle (which will be different), and use the greater
+			# of the two distances.
+			wrk_p1a << p2
+			wrk_p1b << wrk_p1a + coordinate.new_with_polar(100000, angle)
+			l1 << wrk_p1a.line_through(wrk_p1b)
+			dist1 << p1.distance_to(l1)
+
+			(wrk2_angle, wrk_p2a) << ext_sectors.reversed().angle_near(p1)
+			wrk_p2b << wrk_p2a + coordinate.new_with_polar(100000, wrk2_angle)
+			l2 << wrk_p2a.line_through(wrk_p2b)
+			dist2 << p1.distance_to(l2)
+
+			dist << dist1.max(dist2)
+		_endif
+	_endif
+	
+	_if negate_distance?
+	_then
+		dist *<< -1
+	_endif
+
+	corner_style << _self.get_option(:corner_style).default(:acute)
+	_if (int_sectors << .preselected_sectors[1].offset_left(dist, corner_style)) _is _unset
+	_then
+		condition.raise(:user_error, :string, _self.message(:cannot_get_offset_sectors))
+	_endif 
+
+	_if .preselected_sectors[2] _is :areas
+	_then
+		# In this case, don't need to extend, because areas form a
+		# closed loop.
+	_else 
+		# Extend the newly-paralleled sectors once again so that they
+		# cover the screen completely.  This is repeated here, because
+		# it is possible that ext_sectors above makes a closed loop, in
+		# which case the offset of ext_sectors would exclude
+		# interesting bits.  Also, the construction below is careful to
+		# not add intermediate points if possible (i.e. start/end is a
+		# straight sector).
+		a1 << int_sectors.angle_near(c12 << int_sectors.first_coord)
+		a2 << int_sectors.angle_near(c21 << int_sectors.last_coord)
+		dc11 << transform.rotate(a1).convert(coordinate.new(-add_length, 0))
+		dc22 << transform.rotate(a2).convert(coordinate.new(add_length, 0))
+		c11 << c12 + dc11
+		c22 << c21 + dc22
+		_if int_sectors[1].is_class_of?(sector)
+		_then
+			int_sectors[1][1] +<< dc11
+		_else
+			int_sectors.prepend_sectors(sector_rope.new_with(sector.new_with(c11, c12)))
+		_endif 
+		_if int_sectors.last.is_class_of?(sector)
+		_then
+			int_sectors.last[int_sectors.last.size] +<< dc22
+		_else
+			int_sectors.append_sectors(sector_rope.new_with(sector.new_with(c21, c22)))
+		_endif 
+	_endif
+	
+	# For debugging: the following will draw the resulting line on-screen.
+	#mv.xor_sector_rope_transform(line_style, int_sectors)
+	
+	.selected_sectors << int_sectors
+	_return .selected_sectors
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.figure_offset_sectors(end_coord, window)
+	## 
+	## Determine the offset sectors that start at the last trail
+	## point, go through END_COORD, and follow the construction
+	## line stored in .selected_sectors.
+	##
+
+	base_sr << .selected_sectors
+	p1 << (tr << _self.current_trail).last_coord
+	.dynamic_options[:int_probe] << _unset
+	
+	# Note that the following things can be pre-computed, on the
+	# assumption that the trail and .selected_sectors do not change
+	# during the course of the PDR.
+	_if (d1 << .dynamic_options[:cur_trail_d1]) _isnt _unset
+	_then
+		gl1 << .dynamic_options[:cur_trail_gl1]
+		tr_ll << .dynamic_options[:cur_trail_line_length]
+	_else
+		gl1 << base_sr.segpoint_location_near(p1)
+		d1 << base_sr.length_to_location(gl1)
+		tr_ll << tr.sectors.line_length
+
+		# Cache for the next time around.
+		.dynamic_options[:cur_trail_d1] << d1
+		.dynamic_options[:cur_trail_gl1] << gl1
+		.dynamic_options[:cur_trail_line_length] << tr_ll
+	_endif
+
+	gl2 << _unset 
+	raw_gl2 << base_sr.segpoint_location_near(end_coord)
+	d2 << base_sr.length_to_location(raw_gl2)
+	      
+	modmask << .dynamic_options[:modmask]
+	_if (spc << .dynamic_options[:discrete_spacing]) _is _unset
+	_then
+		# Note that the value in .dynamic_options will be converted to
+		# the appropriate unit system.  The raw value from get_option() is in
+		# mm.
+		us << unit_system.new(:mm, tr.world.unit)
+		raw_spc << _self.get_option(:discrete_spacing).default(0.0).as_float
+		spc << .dynamic_options[:discrete_spacing] << us.convert_output(raw_spc)
+	_endif
+
+	use_adjusted_d2? << _false 
+	_if modmask _is :ctrl _andif 
+	    spc > 0
+	_then
+		# The segment length must be a multiple of SPC.
+		adj_val << ((d2 - d1) / spc).rounded * spc
+		d2 << d1 + adj_val
+		use_adjusted_d2? << _true 
+	_elif modmask _is :shift _andif 
+	    spc > 0
+	_then
+		# The total length must be a multiple of SPC.
+		_if d2 > d1
+		_then
+			adj_val << ((tr_ll + d2 - d1) / spc).rounded * spc
+			d2 << d1 + adj_val - tr_ll
+		_else
+			adj_val << ((tr_ll + d1 - d2) / spc).rounded * spc
+			d2 << d1 - adj_val + tr_ll
+		_endif
+		use_adjusted_d2? << _true 
+	_endif
+
+	_if use_adjusted_d2?
+	_then
+		# Use the distance value D2 for determining the final
+		# geom_location GL2.
+		_if (gl2 << base_sr.location_for_length(d2)) _is _unset
+		_then
+			gl2 << base_sr.end_location()
+		_endif
+	_endif
+
+	_if gl2 _is _unset
+	_then
+		# Try to probe for an intersection.
+		int_probe << _self.probe_for_intersection(raw_gl2.coord, window, tr, base_sr)
+		_if int_probe _isnt _unset
+		_then
+			gl2 << base_sr.segpoint_location_near(int_probe.coord)
+			.dynamic_options[:int_probe] << int_probe
+		_endif 
+	_endif
+	
+	_if gl2 _is _unset
+	_then
+		gl2 << raw_gl2
+	_endif
+	
+	sr << base_sr.sections_split_by({gl1, gl2})[2].sectors
+	_if d2 < d1
+	_then
+		sr << sr.reversed()
+	_endif
+
+	_if sr.line_length = 0.0
+	_then
+		.offset_sectors << _unset
+	_else
+		sr[1][1] << p1
+		.offset_sectors << sr
+	_endif
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.probe_for_intersection(coord, window, cur_trail, base_sr)
+	## 
+	## Try to find an intersection between BASE_SR and a linear
+	## feature at position COORD in the canvas WINDOW.
+	##
+
+	the_owner << (cur_map_view << window.user_data).map
+	_if (probes << cur_trail.one_shot_probe) _is _unset
+	_then 
+		probes << the_owner.hit_types
+	_endif 
+	_if _not probes.probe_set?(:int)
+	_then
+		_return 
+	_endif  
+
+	p1 << window.world_for(coordinate(0, 0))
+	p2 << window.world_for(coordinate(0, the_owner.trail_snap_radius))
+	hit_radius << p1.distance_to(p2).abs * 2
+	hit_set << cur_map_view.get_hittable_geometry_set()
+	hit_list << hit_set.hit_list(coord, hit_radius, 10, integer_vector.new_with(0, 0, 0, 0, 0, 0, 1, 0))
+
+	new_coord << _unset 
+	max_distance << hit_radius
+	_for i_cand _over hit_list.fast_elements()
+	_loop
+		(i_geom, i_coord, i_distance, i_type) << (_scatter i_cand)
+		_if i_geom.responds_to?(:intersection_near|()|)
+		_then
+			(p, r) << i_geom.intersection_near(base_sr, coord, max_distance, _unset)
+			_if p _isnt _unset
+			_then
+				_if new_coord _is _unset _orif 
+				    r < max_distance
+				_then 
+					new_coord << p
+					max_distance  << r
+				_endif
+			_endif
+		_endif
+	_endloop
+
+	_if new_coord _isnt _unset
+	_then
+		_return probe.new(new_coord, 8, base_sr)
+	_endif
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.offset_parallel()
+	## 
+	## Initiate the offset_parallel interaction mode.
+	## 
+
+	_if (tr << _self.current_trail) _is _unset _orif
+	    tr.sectors.line_length = 0.0
+	_then
+		condition.raise(:user_error, :string, _self.message(:no_current_trail))
+	_endif
+
+	# Now that all preconditions have been passed, switch to
+	# extend_parallel mode for all GUIs that manage this trail.
+	.dynamic_options.empty()
+	.probes_to_draw.empty()
+	.probes_to_undraw.empty()
+	_for a_gui _over .owner.map_manager.map_gui_frameworks_for_trail(tr)
+	_loop
+		a_gui.set_interaction_mode(.interaction_modes[:offset_parallel])
+	_endloop
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.handle_offset_parallel_action(action_name, start_coord,
+								 end_coord, window)
+	## 
+	## Main handler for all PDR actions when selfs offset_parallel
+	## interaction mode is active.
+	##
+
+	_local me << _self
+	_block
+		_handling error _with
+		_proc(cond)
+			_import me, window
+			me.reset_interaction(:offset_parallel, window)
+			cond.continue_handling()
+		_endproc
+
+		_if {:op_press, :op_press_c, :op_press_s}.includes?(action_name)
+		_then
+			_if action_name _is :op_press _then modmask << _unset
+			_elif action_name _is :op_press_c _then modmask << :ctrl
+			_else modmask << :shift _endif 
+			.dynamic_options[:modmask] << modmask
+
+			# The following was validated when the interaction mode was
+			# invoked - be sure it is still valid when the first button
+			# press is made.
+			_if (tr << _self.current_trail) _is _unset _orif
+			    tr.sectors.line_length = 0.0
+			_then
+				condition.raise(:user_error, :string, _self.message(:no_current_trail))
+			_endif
+
+			.offset_sectors << _unset 
+			.dynamic_options[:trail_sectors] << tr.sectors
+
+			_self.figure_parallel_offset(end_coord)
+			_self.xor_sectors(.offset_sectors)
+			_self.build_probes(end_coord, :offset_parallel)
+			_self.xor_probes(window)
+			
+		_elif {:op_pdr_drag, :op_pdr_drag_c, :op_pdr_drag_s}.includes?(action_name)
+		_then
+			_if action_name _is :op_pdr_drag _then modmask << _unset
+			_elif action_name _is :op_pdr_drag_c _then modmask << :ctrl
+			_else modmask << :shift _endif 
+			.dynamic_options[:modmask] << modmask
+
+			# Undraw the old parallel offset sectors, recompute them, and
+			# redraw them.
+			_self.xor_sectors(.offset_sectors)
+			_self.figure_parallel_offset(end_coord)
+			_self.xor_sectors(.offset_sectors)
+			_self.build_probes(end_coord, :offset_parallel)
+			_self.xor_probes(window)
+			
+		_elif action_name _is :op_click _orif
+		      action_name _is :op_pdr_release
+		_then
+			# Undraw the old parallel offset sectors.
+			_self.xor_sectors(.offset_sectors)
+			_self.xor_probes(window)
+
+			# Assuming that things have completed OK, perform the actual
+			# offset here.
+			_if .offset_sectors _isnt _unset
+			_then
+				_self.current_trail.set_from_geometry(.offset_sectors)
+			_endif 
+		_endif
+	_endblock
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={mss_ptrule})
+_method mss_map_trail_addon_plugin.figure_parallel_offset(end_coord)
+	## 
+	## Determine the offset to apply when performing an
+	## offset_parallel action with pointing at END_COORD.
+	##
+
+	trail_sr << .dynamic_options[:trail_sectors]
+	(ang, nearest_pt) << trail_sr.angle_near(end_coord)
+
+	# In cases where the pointing is beyond the end of the trail,
+	# the offset distance is only the perpendicular component.
+	v1 << coordinate.new_with_polar(1.0, ang)
+	v2 << end_coord - nearest_pt
+	offset_dist << v1.cross(v2)
+
+	modmask << .dynamic_options[:modmask]
+	_if (spc << .dynamic_options[:offset_discrete_spacing]) _is _unset
+	_then
+		# Note that the value in .dynamic_options will be converted to
+		# the appropriate unit system.  The raw value from get_option() is in
+		# mm.
+		us << unit_system.new(:mm, _self.current_trail.world.unit)
+		raw_spc << _self.get_option(:offset_discrete_spacing).default(0.0).as_float
+		spc << .dynamic_options[:offset_discrete_spacing] << us.convert_output(raw_spc)
+	_endif
+
+	_if modmask _is :ctrl _andif 
+	    spc > 0
+	_then
+		# The offset distance must be a multiple of SPC.
+		offset_dist << (offset_dist / spc).rounded * spc
+	_endif
+
+	# Record the offset distance.
+	.dynamic_options[:offset_dist] << offset_dist
+
+	# Perform the offset.  Do this with error handling such that if
+	# an offset cannot be done at a particular distance
+	# (i.e. degenerate result), don't fail: the user may continue
+	# moving the mouse to somewhere non-degenerate.
+	corner_style << _self.get_option(:corner_style).default(:acute)
+	_try
+		old_use_curves? << polygon_acp.option(:offset_use_curves?)
+		_protect 
+			polygon_acp.set_option(:offset_use_curves?, _true)
+			.offset_sectors << trail_sr.offset_left(offset_dist, corner_style)
+		_protection
+			polygon_acp.set_option(:offset_use_curves?, old_use_curves?)
+		_endprotect 
+	_when error
+		.offset_sectors << _unset
+	_endtry
+	
+_endmethod
+$

@@ -1,0 +1,10 @@
+# @ConQAT.Rating GREEN Hash: 24D9BBB06EAA5F4759E43EBEDAF5CE8E
+
+name=Apache Commons HTTP Components Core
+description=HttpComponents Core (blocking I/O)
+version=4.3.2
+license=Apache License 2.0
+website=http://hc.apache.org/
+
+maven.group=org.apache.httpcomponents
+maven.artifact=httpcore

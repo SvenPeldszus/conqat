@@ -1,0 +1,7 @@
+# @ConQAT.Rating GREEN Hash: 666D16F47EBFC9D8CDA1370C55AA5A6B
+
+name=Apache Cassandra Thrift
+description=Thrift interface for Apache Cassandra
+website=http://cassandra.apache.org/
+version=2.1.0
+license=Apache License 2.0

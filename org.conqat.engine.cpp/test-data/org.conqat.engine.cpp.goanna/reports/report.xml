@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<results>
+ <warning>
+  <warningID>1</warningID>
+  <absFile>/home/hummelb/system/test1.cc</absFile>
+  <method>derefNullPtr</method>
+  <lineNo>26</lineNo>
+  <column>10</column>
+  <checkName>PTR-null-cmp-bef</checkName>
+  <message>Pointer `c&apos; is compared with NULL, then dereferenced</message>
+  <trace>
+   <traceBlock file="/home/hummelb/system/test1.cc" method="derefNullPtr">
+    <traceLine line="23" text="if (c==0) is true" type="^"/>
+    <traceLine line="26" text="Dereference of pointer `c&apos;" type="!"/>
+   </traceBlock>
+  </trace>
+  <severity>High</severity>
+  <rules/>
+ </warning>
+ <warning>
+  <warningID>2</warningID>
+  <absFile>/home/hummelb/system/test1.cc</absFile>
+  <method>calculatePositiveSum</method>
+  <lineNo>19</lineNo>
+  <column>3</column>
+  <checkName>SPC-uninit-var-some</checkName>
+  <message>Variable `result&apos; may be uninitialized</message>
+  <trace>
+   <traceBlock file="/home/hummelb/system/test1.cc" method="calculatePositiveSum">
+    <traceLine line="16" text="if (a&gt;0 &amp;&amp; b&gt;0) is false" type="^"/>
+    <traceLine line="19" text="Read of `result&apos;" type="!"/>
+   </traceBlock>
+  </trace>
+  <severity>High</severity>
+  <rules/>
+ </warning>
+ <warning>
+  <warningID>3</warningID>
+  <absFile>/home/hummelb/system/subdir/test2.cc</absFile>
+  <method>leak</method>
+  <lineNo>5</lineNo>
+  <column>9</column>
+  <checkName>MEM-malloc-sizeof</checkName>
+  <message>Call to malloc does not contain a call to sizeof in its argument</message>
+  <trace>
+   <traceBlock file="/home/hummelb/system/subdir/test2.cc" method="leak">
+    <traceLine line="5" text="Allocation call without sizeof: malloc(16)" type="!"/>
+   </traceBlock>
+  </trace>
+  <severity>Low</severity>
+  <rules/>
+ </warning>
+ <warning>
+  <warningID>4</warningID>
+  <absFile>/home/hummelb/system/subdir/test2.cc</absFile>
+  <method>leak</method>
+  <lineNo>5</lineNo>
+  <column>9</column>
+  <checkName>MEM-lose-assign</checkName>
+  <message>Pointer variable `buffer&apos; is allocated but not freed, returned or passed as an argument on all paths, causing a possible memory leak</message>
+  <trace>
+   <traceBlock file="/home/hummelb/system/subdir/test2.cc" method="leak">
+    <traceLine line="5" text="Allocation of memory: buffer = malloc(16)" type="!"/>
+    <traceLine line="6" text="if (a&gt;0) is false" type="^"/>
+    <traceLine line="9" text="return" type=" "/>
+    <traceLine line="10" text="End of function " type="!"/>
+   </traceBlock>
+  </trace>
+  <severity>High</severity>
+  <rules/>
+ </warning>
+</results>

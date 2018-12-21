@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="JUnitSkipTest" project="org.conqat.engine.java" tests="2" started="2" failures="0" errors="0" ignored="1">
+  <testsuite name="org.conqat.engine.java.junit.JUnitSkipTest" time="0.003">
+    <testcase name="test2" classname="org.conqat.engine.java.junit.JUnitSkipTest" time="0.0" ignored="true"/>
+    <testcase name="test1" classname="org.conqat.engine.java.junit.JUnitSkipTest" time="0.003"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,4 @@
+MODULE: package body: pkg (lines 1-12)
+  METHOD: function: fkt1 (lines 3-4)
+  MODULE: task body: foo_task (lines 7-7)
+  MODULE: task body: bar_task (lines 10-10)

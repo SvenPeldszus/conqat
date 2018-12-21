@@ -1,0 +1,10 @@
+# @ConQAT.Rating GREEN Hash: DAE0F7FC0762016DB707AC513ED2107A
+
+name=Apache XML Commons XML APIs
+description=Apache XML Commons XML APIs
+version=unknown
+license=Apache License 2.0
+website=http://xerces.apache.org/xml-commons/
+
+maven.group=xml-apis
+maven.artifact=xml-apis

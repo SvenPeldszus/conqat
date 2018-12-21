@@ -1,0 +1,10 @@
+# @ConQAT.Rating GREEN Hash: A3441461CBBF4C4617BBFD124C46D65E
+
+name=Jacoco for Ant
+description=Ant task to integrate the JaCoCo code coverage library
+version=0.6.4
+license=EPLv1
+website=http://www.eclemma.org/jacoco/
+
+maven.group=org.apache.ant
+maven.artifact=ant

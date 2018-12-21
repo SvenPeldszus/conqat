@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+	$Id: AllCoverageVolumeOutput.cqb 51214 2014-11-25 13:14:50Z hummelb $
+	$Rev: 51214 $
+	@ConQAT.Rating RED Hash: abc
+-->
+<conqat xmlns="http://conqat.cs.tum.edu/ns/config">
+   <block-spec name="org.conqat.engine.blocklib.coverage.AllCoverageVolumeOutput">
+      <processor class="org.conqat.engine.io.XMLFileWriter" name="xml-file-writer">
+         <file name="@concatenator"/>
+         <input ref="@sum-aggregator"/>
+         <node-type-info write="true"/>
+      </processor>
+      <processor class="org.conqat.engine.sourcecode.coverage.volume.CoverableBranchProcessor" condition="@boolean-default3.result" name="coverable-branch-processor">
+         <input ref="@input.ref"/>
+      </processor>
+      <processor class="org.conqat.engine.sourcecode.coverage.volume.CoverableLineProcessor" condition="@boolean-default.result" name="coverable-line-processor">
+         <input ref="@input.ref"/>
+      </processor>
+      <processor class="org.conqat.engine.sourcecode.coverage.volume.condition.CoverableConditionProcessor" condition="@boolean-default4.result" name="coverable-condition-processor">
+         <input ref="@input.ref"/>
+      </processor>
+      <processor class="org.conqat.engine.sourcecode.coverage.volume.condition.CoverableMultiConditionProcessor" condition="@boolean-default5.result" name="coverable-multi-condition-processor">
+         <input ref="@input.ref"/>
+      </processor>
+      <processor class="org.conqat.engine.sourcecode.resource.TokenResourceSelector" name="merged">
+         <input ref="@coverable-volume-output5.renamed-tree"/>
+         <input ref="@coverable-volume-output.renamed-tree"/>
+         <input ref="@coverable-volume-output2.renamed-tree"/>
+         <input ref="@coverable-volume-output3.renamed-tree"/>
+         <input ref="@coverable-volume-output4.renamed-tree"/>
+         <input ref="@coverable-volume-output6.renamed-tree"/>
+         <input ref="@coverable-volume-output7.renamed-tree"/>
+         <input ref="@display-list-editor"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.string.Concatenator" name="concatenator">
+         <part string="@output.dir"/>
+         <part string="/coverable-volume.xml"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.aggregation.SumAggregator" name="sum-aggregator">
+         <input ref="@merged"/>
+         <read key="@coverable-volume-output5.volume-key-name"/>
+         <read key="@coverable-volume-output.volume-key-name"/>
+         <read key="@coverable-volume-output2.volume-key-name"/>
+         <read key="@coverable-volume-output3.volume-key-name"/>
+         <read key="@coverable-volume-output4.volume-key-name"/>
+         <read key="@coverable-volume-output6.volume-key-name"/>
+         <read key="@coverable-volume-output7.volume-key-name"/>
+         <read key="@coverable-volume-output8.volume-key-name"/>
+         <read key="@mc-dc-count-key"/>
+      </processor>
+      <processor class="org.conqat.engine.sourcecode.coverage.volume.CoverableStatementProcessor" condition="@boolean-default2.result" name="coverable-statement-processor">
+         <input ref="@input.ref"/>
+      </processor>
+      <processor class="org.conqat.engine.html_presentation.HTMLPresentation" name="html-presentation">
+         <output dir="@output.dir"/>
+         <result ref="@coverable-volume-output5.html-table"/>
+         <result ref="@coverable-volume-output.html-table"/>
+         <result ref="@coverable-volume-output2.html-table"/>
+         <result ref="@coverable-volume-output3.html-table"/>
+         <result ref="@coverable-volume-output4.html-table"/>
+         <result ref="@coverable-volume-output6.html-table"/>
+         <result ref="@coverable-volume-output7.html-table"/>
+         <result ref="@coverable-volume-output8.html-table"/>
+      </processor>
+      <block condition="@boolean-default2.result" name="coverable-volume-output" spec="org.conqat.engine.blocklib.coverage.CoverableVolumeOutput">
+         <input ref="@coverable-statement-processor"/>
+         <coverage name="statement-coverage"/>
+      </block>
+      <block condition="@boolean-default.result" name="coverable-volume-output5" spec="org.conqat.engine.blocklib.coverage.CoverableVolumeOutput">
+         <input ref="@coverable-line-processor"/>
+         <coverage name="line-coverage"/>
+      </block>
+      <block condition="@boolean-default4.result" name="coverable-volume-output3" spec="org.conqat.engine.blocklib.coverage.CoverableVolumeOutput">
+         <input ref="@coverable-condition-processor"/>
+         <coverage name="condition-coverage"/>
+      </block>
+      <block condition="@boolean-default3.result" name="coverable-volume-output2" spec="org.conqat.engine.blocklib.coverage.CoverableVolumeOutput">
+         <input ref="@coverable-branch-processor"/>
+         <coverage name="branch-coverage"/>
+      </block>
+      <block condition="@boolean-default5.result" name="coverable-volume-output4" spec="org.conqat.engine.blocklib.coverage.CoverableVolumeOutput">
+         <input ref="@coverable-multi-condition-processor"/>
+         <coverage name="multi-condition-coverage"/>
+      </block>
+      <param name="input">
+         <doc>{@connDoc}</doc>
+         <attr name="ref">
+            <doc>{@connDoc}</doc>
+         </attr>
+      </param>
+      <param name="output">
+         <doc>{@connDoc}</doc>
+         <attr name="dir">
+            <doc>{@connDoc}</doc>
+         </attr>
+      </param>
+      <block condition="@boolean-default6.result" name="coverable-volume-output6" spec="org.conqat.engine.blocklib.coverage.CoverableVolumeOutput">
+         <input ref="@coverable-decision-processor"/>
+         <coverage name="decision-coverage"/>
+      </block>
+      <block condition="@boolean-default7.result" name="coverable-volume-output7" spec="org.conqat.engine.blocklib.coverage.CoverableVolumeOutput">
+         <input ref="@coverable-condition-decision-processor"/>
+         <coverage name="condition-decision-coverage"/>
+      </block>
+      <block condition="@boolean-default8.result" name="coverable-volume-output8" spec="org.conqat.engine.blocklib.coverage.CoverableVolumeOutput">
+         <input ref="@sum-aggregator2"/>
+         <coverage name="mc-dc-coverage"/>
+      </block>
+      <processor class="org.conqat.engine.sourcecode.coverage.volume.condition.CoverableDecisionProcessor" condition="@boolean-default6.result" name="coverable-decision-processor">
+         <input ref="@input.ref"/>
+      </processor>
+      <processor class="org.conqat.engine.sourcecode.coverage.volume.condition.CoverableConditionDecisionProcessor" condition="@boolean-default7.result" name="coverable-condition-decision-processor">
+         <input ref="@input.ref"/>
+      </processor>
+      <processor class="org.conqat.engine.sourcecode.coverage.volume.condition.CoverableMCDCProcessor" condition="@boolean-default8.result" name="coverablemcdc-processor">
+         <input ref="@input.ref"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.util.DisplayListEditor" condition="@boolean-default8.result" name="display-list-editor">
+         <input ref="@coverable-volume-output8.renamed-tree"/>
+         <add key="@mc-dc-count-key"/>
+         <add key="mc-dc-test-hints"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.defs.StringConstant" condition="@boolean-default8.result" name="mc-dc-count-key">
+         <constant value="mc-dc-test-count"/>
+      </processor>
+      <block name="boolean-default" spec="org.conqat.engine.commons.dataflow.BooleanDefault">
+         <default value="true"/>
+         <actual value="@line-coverage.enabled"/>
+      </block>
+      <param name="line-coverage">
+         <attr name="enabled"/>
+      </param>
+      <block name="boolean-default2" spec="org.conqat.engine.commons.dataflow.BooleanDefault">
+         <default value="true"/>
+         <actual value="@statement-coverage.enabled"/>
+      </block>
+      <param name="statement-coverage">
+         <attr name="enabled"/>
+      </param>
+      <block name="boolean-default3" spec="org.conqat.engine.commons.dataflow.BooleanDefault">
+         <default value="true"/>
+         <actual value="@branch-coverage.enabled"/>
+      </block>
+      <param name="branch-coverage">
+         <attr name="enabled"/>
+      </param>
+      <block name="boolean-default4" spec="org.conqat.engine.commons.dataflow.BooleanDefault">
+         <default value="true"/>
+         <actual value="@condition-coverage.enabled"/>
+      </block>
+      <param name="condition-coverage">
+         <attr name="enabled"/>
+      </param>
+      <block name="boolean-default5" spec="org.conqat.engine.commons.dataflow.BooleanDefault">
+         <default value="true"/>
+         <actual value="@multi-condition-coverage.enabled"/>
+      </block>
+      <param name="multi-condition-coverage">
+         <attr name="enabled"/>
+      </param>
+      <block name="boolean-default6" spec="org.conqat.engine.commons.dataflow.BooleanDefault">
+         <default value="true"/>
+         <actual value="@decision-coverage.enabled"/>
+      </block>
+      <param name="decision-coverage">
+         <attr name="enabled"/>
+      </param>
+      <block name="boolean-default7" spec="org.conqat.engine.commons.dataflow.BooleanDefault">
+         <default value="true"/>
+         <actual value="@condition-decision-coverage.enabled"/>
+      </block>
+      <param name="condition-decision-coverage">
+         <attr name="enabled"/>
+      </param>
+      <block name="boolean-default8" spec="org.conqat.engine.commons.dataflow.BooleanDefault">
+         <default value="true"/>
+         <actual value="@mcdc-coverage.enabled"/>
+      </block>
+      <param name="mcdc-coverage">
+         <attr name="enabled"/>
+      </param>
+      <processor class="org.conqat.engine.commons.aggregation.SumAggregator" condition="@boolean-default8.result" name="sum-aggregator2">
+         <read key="@mc-dc-count-key"/>
+         <input ref="@coverablemcdc-processor"/>
+      </processor>
+   </block-spec>
+   <meta type="cq.edit">
+      <entries namespace="xml-file-writer">
+         <entry key="pos" value="612,1080"/>
+      </entries>
+      <entries namespace="coverable-branch-processor">
+         <entry key="pos" value="684,264"/>
+      </entries>
+      <entries namespace="coverable-line-processor">
+         <entry key="pos" value="276,264"/>
+      </entries>
+      <entries namespace="coverable-condition-processor">
+         <entry key="pos" value="888,264"/>
+      </entries>
+      <entries namespace="coverable-multi-condition-processor">
+         <entry key="pos" value="123,528"/>
+      </entries>
+      <entries namespace="merged">
+         <entry key="pos" value="648,864"/>
+      </entries>
+      <entries namespace="concatenator">
+         <entry key="pos" value="540,924"/>
+      </entries>
+      <entries namespace="sum-aggregator">
+         <entry key="pos" value="696,996"/>
+      </entries>
+      <entries namespace="coverable-statement-processor">
+         <entry key="pos" value="480,264"/>
+      </entries>
+      <entries namespace="html-presentation">
+         <entry key="pos" value="356,825"/>
+      </entries>
+      <entries namespace="coverable-volume-output">
+         <entry key="pos" value="481,330"/>
+      </entries>
+      <entries namespace="coverable-volume-output5">
+         <entry key="pos" value="276,330"/>
+      </entries>
+      <entries namespace="coverable-volume-output3">
+         <entry key="pos" value="891,330"/>
+      </entries>
+      <entries namespace="coverable-volume-output2">
+         <entry key="pos" value="686,330"/>
+      </entries>
+      <entries namespace="coverable-volume-output4">
+         <entry key="pos" value="120,600"/>
+      </entries>
+      <entries namespace="input">
+         <entry key="pos" value="60,36"/>
+      </entries>
+      <entries namespace="output">
+         <entry key="pos" value="216,720"/>
+      </entries>
+      <entries namespace="coverable-volume-output6">
+         <entry key="pos" value="324,600"/>
+      </entries>
+      <entries namespace="coverable-volume-output7">
+         <entry key="pos" value="528,600"/>
+      </entries>
+      <entries namespace="coverable-volume-output8">
+         <entry key="pos" value="732,600"/>
+      </entries>
+      <entries namespace="coverable-decision-processor">
+         <entry key="pos" value="326,528"/>
+      </entries>
+      <entries namespace="coverable-condition-decision-processor">
+         <entry key="pos" value="529,528"/>
+      </entries>
+      <entries namespace="coverablemcdc-processor">
+         <entry key="pos" value="732,528"/>
+      </entries>
+      <entries namespace="display-list-editor">
+         <entry key="pos" value="768,756"/>
+      </entries>
+      <entries namespace="mc-dc-count-key">
+         <entry key="pos" value="960,480"/>
+      </entries>
+      <entries namespace="boolean-default">
+         <entry key="pos" value="168,204"/>
+      </entries>
+      <entries namespace="line-coverage">
+         <entry key="pos" value="204,144"/>
+      </entries>
+      <entries namespace="boolean-default2">
+         <entry key="pos" value="372,204"/>
+      </entries>
+      <entries namespace="statement-coverage">
+         <entry key="pos" value="408,144"/>
+      </entries>
+      <entries namespace="boolean-default3">
+         <entry key="pos" value="576,204"/>
+      </entries>
+      <entries namespace="branch-coverage">
+         <entry key="pos" value="612,144"/>
+      </entries>
+      <entries namespace="boolean-default4">
+         <entry key="pos" value="780,204"/>
+      </entries>
+      <entries namespace="condition-coverage">
+         <entry key="pos" value="816,144"/>
+      </entries>
+      <entries namespace="boolean-default5">
+         <entry key="pos" value="12,468"/>
+      </entries>
+      <entries namespace="multi-condition-coverage">
+         <entry key="pos" value="48,408"/>
+      </entries>
+      <entries namespace="boolean-default6">
+         <entry key="pos" value="216,468"/>
+      </entries>
+      <entries namespace="decision-coverage">
+         <entry key="pos" value="252,408"/>
+      </entries>
+      <entries namespace="boolean-default7">
+         <entry key="pos" value="420,468"/>
+      </entries>
+      <entries namespace="condition-decision-coverage">
+         <entry key="pos" value="456,408"/>
+      </entries>
+      <entries namespace="boolean-default8">
+         <entry key="pos" value="624,468"/>
+      </entries>
+      <entries namespace="mcdc-coverage">
+         <entry key="pos" value="660,408"/>
+      </entries>
+      <entries namespace="sum-aggregator2">
+         <entry key="pos" value="924,552"/>
+      </entries>
+   </meta>
+</conqat>

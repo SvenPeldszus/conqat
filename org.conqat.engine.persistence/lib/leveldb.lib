@@ -1,0 +1,7 @@
+# @ConQAT.Rating GREEN Hash: AAE7268CDD08E513495F73FA4C86FDC2
+
+name=LevelDB Wrapper
+description=Custom library wrapping LevelDB via JNI/SWIG.
+website=http://leveldb.googlecode.com/
+version=n/a
+license=BSD 3-Clause

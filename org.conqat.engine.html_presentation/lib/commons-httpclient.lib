@@ -1,0 +1,12 @@
+# @ConQAT.Rating GREEN Hash: 2B96D7F34FD1050A6A8A3BBF17A2E33A
+
+name=Apache Commons HTTP Client
+description=Apache Commons HTTP Client.
+version=3.1
+license=Apache License 2.0
+website=http://hc.apache.org/httpclient-3.x/
+
+remarks=The Commons HttpClient project is now end of life, and is no longer being developed.
+
+maven.group=commons-httpclient
+maven.artifact=commons-httpclient

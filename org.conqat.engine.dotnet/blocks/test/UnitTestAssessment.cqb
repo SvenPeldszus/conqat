@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conqat xmlns="http://conqat.cs.tum.edu/ns/config">
+   <block-spec name="org.conqat.engine.dotnet.test.UnitTestAssessment">
+      <processor class="org.conqat.engine.commons.date.DatePicker" name="date-picker">
+         <input ref="@maximum-aggregator"/>
+         <read key="report date"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.assessment.AssessmentAggregator" name="assessment-aggregator">
+         <input ref="@test-root.ref"/>
+         <read key="assessment"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.aggregation.MaximumAggregator" name="maximum-aggregator">
+         <input ref="@value-duplicator"/>
+         <read key="report date"/>
+         <include-inner-nodes value="true"/>
+         <missing log="false"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.aggregation.SumAggregator" name="sum-aggregator">
+         <input ref="@assessment-frequency-annotator"/>
+         <read key="failed"/>
+         <read key="passed"/>
+         <read key="ignored"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.assessment.AssessmentFrequencyAnnotator" name="assessment-frequency-annotator">
+         <input ref="@assessment-aggregator"/>
+         <assessment key="assessment"/>
+         <annotate color="RED" key="failed"/>
+         <annotate color="GREEN" key="passed"/>
+         <annotate color="YELLOW" key="ignored"/>
+      </processor>
+      <param name="test-root">
+         <attr name="ref"/>
+      </param>
+      <out name="assessment-frequency" ref="@assessment-frequency-annotator"/>
+      <out name="assessment-sum" ref="@value-copier"/>
+      <out name="report-date" ref="@date-picker"/>
+      <out name="assessment-aggregated" ref="@assessment-aggregator"/>
+      <processor class="org.conqat.engine.commons.util.ValueDuplicator" name="value-duplicator">
+         <input ref="@sum-aggregator"/>
+         <toKey value="report date"/>
+         <fromKey value="Time"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.util.ValueCopier" name="value-copier">
+         <input ref="@sum-aggregator"/>
+         <source ref="@maximum-aggregator"/>
+         <read key="report date"/>
+      </processor>
+   </block-spec>
+   <meta type="cq.edit">
+      <entries namespace="date-picker">
+         <entry key="pos" value="156,708"/>
+      </entries>
+      <entries namespace="assessment-aggregator">
+         <entry key="pos" value="372,252"/>
+      </entries>
+      <entries namespace="maximum-aggregator">
+         <entry key="pos" value="156,612"/>
+      </entries>
+      <entries namespace="sum-aggregator">
+         <entry key="pos" value="372,420"/>
+      </entries>
+      <entries namespace="assessment-frequency-annotator">
+         <entry key="pos" value="372,336"/>
+      </entries>
+      <entries namespace="assessment-sum">
+         <entry key="pos" value="408,852"/>
+      </entries>
+      <entries namespace="report-date">
+         <entry key="pos" value="192,852"/>
+      </entries>
+      <entries namespace="assessment-aggregated">
+         <entry key="pos" value="228,336"/>
+      </entries>
+      <entries namespace="assessment-frequency">
+         <entry key="pos" value="228,420"/>
+      </entries>
+      <entries namespace="test-root">
+         <entry key="pos" value="408,132"/>
+      </entries>
+      <entries namespace="value-duplicator">
+         <entry key="pos" value="156,528"/>
+      </entries>
+      <entries namespace="value-copier">
+         <entry key="pos" value="372,708"/>
+      </entries>
+   </meta>
+</conqat>

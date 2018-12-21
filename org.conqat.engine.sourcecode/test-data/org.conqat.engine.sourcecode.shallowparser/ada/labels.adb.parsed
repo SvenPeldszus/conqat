@@ -1,0 +1,8 @@
+MODULE: package body: foo (lines 1-17)
+  METHOD: procedure: p (lines 4-15)
+    STATEMENT: loop: null (lines 5-14)
+      STATEMENT: if: null (lines 6-13)
+        STATEMENT: if: null (lines 7-12)
+          META: Loop name: null (lines 8-8)
+          STATEMENT: while: null (lines 9-11)
+            STATEMENT: doit: null (lines 10-10)

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conqat xmlns="http://conqat.cs.tum.edu/ns/config">
+   <block-spec name="org.conqat.engine.blocklib.dotnet.MSTestChain">
+      <param name="info">
+         <attr name="groupId"/>
+      </param>
+      <param name="db">
+         <attr name="enabled"/>
+         <attr name="connection"/>
+      </param>
+      <param name="domain">
+         <attr name="resolution"/>
+      </param>
+      <param name="output">
+         <attr name="dir"/>
+      </param>
+      <out name="html-result" ref="@unit-test-presentation.html-result"/>
+      <out name="unit-test-chart-image" ref="@unit-test-presentation.image-descriptor">
+         <doc>{@connDoc}</doc>
+      </out>
+      <out name="assessed-unit-tests-result" ref="@unit-test-analysis.assessment-sum"/>
+      <param name="trx-files">
+         <doc>{@connDoc}</doc>
+         <attr name="root">
+            <doc>{@connDoc}</doc>
+         </attr>
+      </param>
+      <block name="unit-test-analysis" spec="org.conqat.engine.dotnet.test.UnitTestAssessment">
+         <test-root ref="@trx-file-reader"/>
+      </block>
+      <block name="unit-test-presentation" spec="org.conqat.engine.blocklib.dotnet.UnitTestPresentation">
+         <domain resolution="@domain.resolution"/>
+         <db connection="@db.connection" enabled="@db.enabled"/>
+         <info groupId="@info.groupId"/>
+         <output dir="@output.dir"/>
+         <input scope="@unit-test-analysis.assessment-sum"/>
+         <time value="@unit-test-analysis.report-date"/>
+      </block>
+      <processor class="org.conqat.engine.dotnet.test.mstest.TrxFileReader" name="trx-file-reader">
+         <input ref="@trx-files.root"/>
+      </processor>
+   </block-spec>
+   <meta type="cq.edit">
+      <entries namespace="html-result">
+         <entry key="pos" value="156,456"/>
+      </entries>
+      <entries namespace="info">
+         <entry key="pos" value="564,108"/>
+         <entry key="edges_invisible" value="false"/>
+      </entries>
+      <entries namespace="db">
+         <entry key="pos" value="420,108"/>
+         <entry key="edges_invisible" value="false"/>
+      </entries>
+      <entries namespace="domain">
+         <entry key="pos" value="540,324"/>
+      </entries>
+      <entries namespace="output">
+         <entry key="pos" value="504,228"/>
+      </entries>
+      <entries namespace="#comments">
+         <entry key="comment_1400152355902" value="Use by system test"/>
+      </entries>
+      <entries namespace="#comment-bounds">
+         <entry key="comment_1400152355902" value="28,163,150,80"/>
+      </entries>
+      <entries namespace="unit-test-chart-image">
+         <entry key="pos" value="276,456"/>
+      </entries>
+      <entries namespace="assessed-unit-tests-result">
+         <entry key="pos" value="-36,348"/>
+      </entries>
+      <entries namespace="trx-files">
+         <entry key="pos" value="192,0"/>
+      </entries>
+      <entries namespace="unit-test-analysis">
+         <entry key="pos" value="180,168"/>
+      </entries>
+      <entries namespace="unit-test-presentation">
+         <entry key="pos" value="168,360"/>
+      </entries>
+      <entries namespace="trx-file-reader">
+         <entry key="pos" value="180,84"/>
+      </entries>
+   </meta>
+</conqat>

@@ -1,0 +1,10 @@
+# @ConQAT.Rating GREEN Hash: 069133446DB17B51065C95257E05D4A1
+
+name=Eclipse ECJ
+description=Eclipse JDT Core Batch Compiler
+website=http://www.eclipse.org/jdt/
+version=3.7
+license=EPLv1
+
+maven.group=org.eclipse.jdt.core.compiler
+maven.artifact=ecj

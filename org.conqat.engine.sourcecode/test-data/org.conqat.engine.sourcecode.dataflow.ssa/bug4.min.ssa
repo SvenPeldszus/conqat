@@ -1,0 +1,28 @@
+0: { BasicBlock 1
+  ---
+  mn_-1 = ? [default init]
+  ---
+  condition(yes=[], no=[], checked=[])
+  ---
+ } --> 1, 2
+1: { BasicBlock 2
+  ---
+  mn_-2 = ?
+  ---
+  use(mn_-2)
+  dereference(mn_-2)
+  condition(yes=[], no=[], checked=[])
+  ---
+ } --> 3, 4
+3: { BasicBlock 3
+  ---
+  ---
+ } --> 2
+2: { BasicBlock 4
+  ---
+  ---
+ } --> 
+4: { BasicBlock 5
+  ---
+  ---
+ } --> 2

@@ -1,0 +1,11 @@
+# @ConQAT.Rating GREEN Hash: A00DE80F967B4D84BD07CF0310663A3C
+
+name=CUP Runtime
+description=Runtime libraries for parsers generated with CUP
+website=http://www2.cs.tum.edu/projects/cup/
+version=0.10k (TUM Edition)
+license.apacheCompatible=true
+license.commercialUse=true
+
+license=CUP Parser Generator License
+license.website=http://www2.cs.tum.edu/projects/cup/licence.html

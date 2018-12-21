@@ -1,0 +1,19 @@
+0: { BasicBlock 1
+  ---
+  a_-1 = ? [default init]
+  b_-1 = ? [default init]
+  ---
+  condition(yes=[], no=[], checked=[])
+  ---
+ } --> 1, 2
+1: { BasicBlock 2
+  ---
+  a_-2 = ?
+  b_-2 = ?
+  dereference(a_-1)
+  ---
+ } --> 2
+2: { BasicBlock 3
+  ---
+  ---
+ } --> 

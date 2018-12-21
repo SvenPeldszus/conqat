@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+	$Id: OptionalPageMergeLayouter.cqb 49314 2014-05-15 14:04:55Z hummelb $
+	$Rev: 49314 $
+	@ConQAT.Rating GREEN Hash: 70B9ED03B53F6181DB6C6121CDAAB5F0
+-->
+<conqat xmlns="http://conqat.cs.tum.edu/ns/config">
+   <block-spec name="org.conqat.engine.html_presentation.OptionalPageMergeLayouter">
+      <doc>A PageMergeLayouter that disables itself if no inputs are provided.</doc>
+      <processor class="org.conqat.engine.html_presentation.layouters.PageMergeLayouter" condition="@parameters-present-condition" name="page-merge-layouter">
+         <input ref="@input.ref"/>
+         <headings visible="@headings.visible"/>
+         <layout horizontal="@layout.horizontal"/>
+         <info description="@info.description" groupId="@info.groupId" name="@info.name"/>
+      </processor>
+      <param name="input">
+         <doc>{@childDoc page-merge-layouter.input}</doc>
+         <attr name="ref">
+            <doc>{@childDoc page-merge-layouter.input.ref}</doc>
+         </attr>
+      </param>
+      <param name="headings">
+         <doc>{@connDoc}</doc>
+         <attr name="visible">
+            <doc>{@connDoc}</doc>
+         </attr>
+      </param>
+      <param name="layout">
+         <doc>{@connDoc}</doc>
+         <attr name="horizontal">
+            <doc>{@connDoc}</doc>
+         </attr>
+      </param>
+      <out name="html-result" ref="@page-merge-layouter">
+         <doc>The output.</doc>
+      </out>
+      <processor class="org.conqat.engine.commons.bool.ParametersPresentCondition" name="parameters-present-condition">
+         <input value="@input.ref"/>
+      </processor>
+      <param name="info">
+         <doc>{@connDoc}</doc>
+         <attr name="groupId">
+            <doc>{@connDoc}</doc>
+         </attr>
+         <attr name="description">
+            <doc>{@connDoc}</doc>
+         </attr>
+         <attr name="name">
+            <doc>{@connDoc}</doc>
+         </attr>
+      </param>
+   </block-spec>
+   <meta type="cq.edit">
+      <entries namespace="page-merge-layouter">
+         <entry key="pos" value="228,252"/>
+      </entries>
+      <entries namespace="input">
+         <entry key="pos" value="156,84"/>
+      </entries>
+      <entries namespace="headings">
+         <entry key="pos" value="264,84"/>
+      </entries>
+      <entries namespace="layout">
+         <entry key="pos" value="372,84"/>
+      </entries>
+      <entries namespace="html-result">
+         <entry key="pos" value="268,332"/>
+      </entries>
+      <entries namespace="parameters-present-condition">
+         <entry key="pos" value="48,168"/>
+      </entries>
+      <entries namespace="info">
+         <entry key="pos" value="480,84"/>
+      </entries>
+   </meta>
+</conqat>

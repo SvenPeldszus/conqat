@@ -1,0 +1,19 @@
+        -:    0:Source:test.cpp
+        -:    0:Graph:build/./test.gcno
+        -:    0:Data:build/./test.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "test.h"
+        -:    2:
+        1:    3:void called () {
+        1:    4:  Printer<int>::printBoth();
+        1:    5:}
+        -:    6:
+    #####:    7:void notCalled () {
+    #####:    8:  Printer<int>::printNever();
+    #####:    9:}
+        -:   10:
+        1:   11:int main () {
+        1:   12:  called ();
+        1:   13:  externalFunction (17);
+        3:   14:}

@@ -1,0 +1,109 @@
+$
+# All of the following are command-line convenience tools ONLY,
+# and should not be used in any real code.
+#
+
+_global appl <<
+_proc(_optional x)
+	_if x _is _unset _then _return smallworld_product.applications.an_element() _endif
+	_return smallworld_product.application(x)
+_endproc
+$
+
+_global view <<
+_proc(x)
+	_return gis_program_manager.cached_dataset(x)
+_endproc
+$
+
+_global col <<
+_proc(x)
+	_return view(:gis).collections[x]
+_endproc
+$
+
+_global ecol <<
+_proc(x)
+	_return view(:electricity).collections[x]
+_endproc
+$
+
+_global ccol <<
+_proc(x)
+	_return view(:mss_config).collections[x]
+_endproc
+$
+
+_global wcol <<
+_proc(x)
+	_return view(:mss_workspace).collections[x]
+_endproc
+$
+
+_pragma(classify_level=debug)
+_method application.current_set
+	## 
+	## 
+
+	 _return _self.plugin(:maps).current_map.current_selection
+	 
+_endmethod
+$
+
+_pragma(classify_level=debug)
+_method application.current_geometry
+	## 
+	## 
+
+	x << _self.plugin(:maps).current_map.current_selection
+	_if x.size = 1
+	_then
+		_return x.an_element()
+	_else
+		_return _unset
+	_endif
+	
+_endmethod
+$
+
+_pragma(classify_level=debug)
+_method dd_collection_mixin.count_summary_for(attr)
+	## 
+	## 
+
+	x << equality_hash_table.new()
+	_for i _over _self.fast_elements()
+	_loop
+		_if x[(j << i.perform(attr).write_string)] _is _unset
+		_then
+			x[j] << 1
+		_else
+			x[j] +<< 1
+		_endif
+	_endloop
+
+	_return x
+	
+_endmethod
+$
+
+_pragma(classify_level=debug)
+_method hash_table.print_sorted()
+	## 
+	## 
+
+	sc << sorted_collection.new(_self.size, _proc(a,b) _return a[1] _cf b[1] _endproc)
+	_for i, j _over _self.fast_keys_and_elements()
+	_loop
+		sc.add({i,j})
+	_endloop
+	_for i _over sc.fast_elements()
+	_loop
+		!output!.show(i[1])
+		!output!.write(tab_char)
+		!output!.show(i[2])
+		!output!.write(newline_char)
+	_endloop 
+
+_endmethod
+$

@@ -1,0 +1,10 @@
+# @ConQAT.Rating GREEN Hash: EBA5CB110B200588D0B54E324F8630EA
+
+name=JCommon
+description=JCommon is a free general purpose Java class library.
+version=1.0.16
+license=LGPLv3
+website=org.jfree
+
+maven.group=org.jfree
+maven.artifact=jcommon

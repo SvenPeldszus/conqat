@@ -1,0 +1,3 @@
+TYPE: class: Generics (lines 1-7)
+  METHOD: method: newConcurrentMap (lines 4-6)
+    STATEMENT: simple statement: return (lines 5-5)

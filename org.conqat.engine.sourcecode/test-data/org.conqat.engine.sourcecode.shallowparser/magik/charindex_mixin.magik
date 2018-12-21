@@ -1,0 +1,194 @@
+#% text_encoding = iso8859_1
+_package user
+# Copyright © 2004 Minto Spatial Solutions Ltd.
+#
+# This software is released under the terms of version 2 of the
+# GNU General Public License.  The full license text is
+# provided in the license.txt file in the mss product
+# directory, and is also available at http://www.fsf.org.
+
+_pragma(classify_level=advanced, topic={mss_common})
+_method charindex_mixin.mss_parse_for_csv(_optional delim_char, quote_char)
+	## 
+	## Parse self into components using Comma Separated Values
+	## (CSV) rules, and return a rope of values.  DELIM_CHAR
+	## defaults to %,.  QUOTE_CHAR defaults to %".
+	##
+
+	# N.B: this is not a fully robust implementation of CSV rules -
+	# malformed data will cause this to break.  This implementation
+	# does serve the basic purpose of allowing strings containing
+	# commas to be properly parsed as long as the caller ensures
+	# that legitimate data is passed in.
+	
+	delim_char << delim_char.default(%,)
+	quote_char << quote_char.default(%")
+	r << rope.new()
+	len << _self.size
+
+	# Special case: for zero-length string, return an empty rope.
+	_if len = 0
+	_then
+		_return r
+	_endif
+	
+	last_char_idx << 0
+	delim_idx << _self.index_of(delim_char, last_char_idx + 1)
+	quote_idx << _self.index_of(quote_char, last_char_idx + 1)
+
+	in_quotes? << _false 
+	work_str << internal_text_output_stream.new()
+	
+	_loop
+		# If no interesting characters left, just return the remainder.
+		_if delim_idx _is _unset _andif
+		    quote_idx _is _unset
+		_then
+			work_str.write(_self.slice_to_end(last_char_idx + 1))
+			r.add_last(work_str.string)
+			_leave
+		_endif
+
+		# Deal with the case where the next interesting character is a
+		# delimiter. 
+		_if quote_idx _is _unset _orif
+		    (delim_idx _isnt _unset _andif delim_idx < quote_idx)
+		_then
+			_if in_quotes?
+			_then
+				# In quotes, this does not serve as a delimiter between fields
+				# - it is simple a part of the string.
+				work_str.write(_self.slice(last_char_idx + 1, delim_idx))
+			_else
+				# Not in quotes, this does separate fields.
+				work_str.write(_self.slice(last_char_idx + 1, delim_idx - 1))
+				r.add_last(work_str.string)
+				work_str << internal_text_output_stream.new()
+			_endif
+			last_char_idx << delim_idx
+			delim_idx << _self.index_of(delim_char, last_char_idx + 1)
+			_continue
+		_endif
+
+		# Deal with the cases where the next interesting character is a
+		# quote.  First, consider the cases where we're already in quotes. 
+		_if in_quotes?
+		_then
+			work_str.write(_self.slice(last_char_idx + 1, quote_idx - 1))
+			# If this is the last character in the line, then we're done.
+			_if quote_idx = len
+			_then
+				r.add_last(work_str.string)
+				in_quotes? << _false
+				_leave
+
+			# If the immediate following character is a delimiter, this is
+			# the end of this field. 
+			_elif _self[quote_idx + 1] _is delim_char
+			_then
+				r.add_last(work_str.string)
+				work_str << internal_text_output_stream.new()
+				last_char_idx << quote_idx + 1
+				in_quotes? << _false
+
+				# In addition to moving quote_idx forward (below), also roll
+				# delim_idx forward, since both are processed here.
+				delim_idx << _self.index_of(delim_char, last_char_idx + 1)
+				
+			# If the immediate following character is also a quote... back
+			# to back quote characters indicates a single quote character
+			# in the resulting string.
+			_elif _self[quote_idx + 1] _is quote_char
+			_then
+				work_str.write(quote_char)
+				last_char_idx << quote_idx + 1
+
+			# Falling through to this point means that something isn't
+			# right.  Just spit out a quote character and carry on.
+			_else
+				work_str.write(quote_char)
+				last_char_idx << quote_idx
+			_endif
+		_else
+			# Not in quotes.  If the immediate preceeding character is a
+			# delimiter, then consider this to be the start of a field in
+			# quotes.
+			_if quote_idx = last_char_idx + 1
+			_then
+				in_quotes? << _true
+				last_char_idx << quote_idx
+
+			# Falling through to this point means that something isn't
+			# right.  Just spit out a quote character and carry on.
+			_else
+				work_str.write(_self.slice(last_char_idx + 1, quote_idx - 1))
+				work_str.write(quote_char)
+				last_char_idx << quote_idx
+			_endif
+		_endif
+		quote_idx << _self.index_of(quote_char, last_char_idx + 1)
+	_endloop
+
+	_return r
+	
+_endmethod
+$
+
+_pragma(classify_level=advanced, topic={mss_common})
+_method charindex_mixin.mss_format_for_csv(_optional comma_char, quote_char)
+	## 
+	## Return a copy of self that is formatted for CSV output:
+	## - If self contains COMMA_CHAR (default %,) or a newline
+	##   character, then the result is enclosed in QUOTE_CHAR.
+	## - If self contains QUOTE_CHAR (default %"), then each
+	##   instance of a quote is replaced by a double-instance,
+	##   and the result is enclosed in QUOTE_CHAR.
+	##
+
+	comma_char << comma_char.default(%,)
+	quote_char << quote_char.default(%")
+
+	# If there are no special characters, bypass any special
+	# processing.
+	_if _self.index_of(comma_char) _is _unset _andif 
+            _self.index_of(quote_char) _is _unset _andif 
+            _self.index_of(newline_char) _is _unset 
+        _then 
+                _return _self.copy()
+        _endif
+
+	# Replace all single quotes with double quotes.
+	s << internal_text_output_stream.new()
+	s.write(quote_char)
+	i << 1
+	_loop
+		_if (j << _self.index_of(quote_char, i)) _is _unset 
+                _then 
+                        _leave 
+                _endif
+		s.write(_self.slice(i, j - 1), quote_char, quote_char)
+		i << j + 1
+	_endloop
+	s.write(_self.slice_to_end(i))
+	s.write(quote_char)
+	_return s.string
+	
+_endmethod
+$
+
+_pragma(classify_level=basic)
+_method charindex_mixin.mss_as_safe_filename()
+	## 
+	## Return self, with any invalid filename character converted
+	## to an underscore.
+	##
+
+	bad_chars << {%\, %/, %:, %*, %?, %", %<, %>, %|}
+	_for i _over bad_chars.fast_elements()
+	_loop 
+		_self.substitute_character(i, %_)
+	_endloop
+	_return _self
+	
+_endmethod
+$

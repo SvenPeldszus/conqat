@@ -1,0 +1,27 @@
+#!/bin/sh
+
+if test "x$CONQAT_HOME" = "x" 
+then
+	# determine CONQAT_HOME relative to script dir
+	# NOTE: This will not work if the script is on the path
+	SCRIPTDIR=`dirname $0`
+	CONQAT_HOME=`cd $SCRIPTDIR; cd ..; pwd`
+fi
+
+if test "x$CONQAT_MEMORY" = "x" 
+then
+  CONQAT_MEMORY=512m
+fi
+
+VM_PROPERTIES="-Djava.awt.headless=true -Djdk.xml.entityExpansionLimit=0"
+
+CQ_CP="%%CLASSPATH%%"
+if test "x$CONQAT_PIDFILE" = "x"
+then
+  exec java $CONQAT_VM_ARGS $VM_PROPERTIES -Xmx$CONQAT_MEMORY -cp "$CQ_CP" %%MAINCLASS%% %%MAINARGS%% $*
+else
+  exec java $CONQAT_VM_ARGS $VM_PROPERTIES -Xmx$CONQAT_MEMORY -cp "$CQ_CP" %%MAINCLASS%% %%MAINARGS%% $* &
+  PID=$!
+  printf "%d" $PID > "$CONQAT_PIDFILE"
+  wait $PID
+fi

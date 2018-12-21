@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+	$Id: CoverableVolumeOutput.cqb 51214 2014-11-25 13:14:50Z hummelb $
+	$Rev: 51214 $
+	@ConQAT.Rating RED Hash: abc
+-->
+<conqat xmlns="http://conqat.cs.tum.edu/ns/config">
+   <block-spec name="org.conqat.engine.blocklib.coverage.CoverableVolumeOutput">
+      <processor class="org.conqat.engine.html_presentation.layouters.TableLayouter" name="table-layouter">
+         <input ref="@sum-aggregator"/>
+         <info name="@coverage.name"/>
+         <display mode="TREE"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.aggregation.SumAggregator" name="sum-aggregator">
+         <read key="coverable volume"/>
+         <input ref="@input.ref"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.util.ValueDuplicator" name="value-duplicator">
+         <input ref="@input.ref"/>
+         <fromKey value="coverable volume"/>
+         <toKey value="@volume-key"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.util.ValueDuplicator" name="value-duplicator2">
+         <input ref="@value-duplicator"/>
+         <fromKey value="coverable hints"/>
+         <toKey value="@hint-key"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.string.Concatenator" name="volume-key">
+         <part string="@coverage.name"/>
+         <part string="-volume"/>
+      </processor>
+      <processor class="org.conqat.engine.commons.string.Concatenator" name="hint-key">
+         <part string="@coverage.name"/>
+         <part string="-details"/>
+      </processor>
+      <param name="coverage">
+         <attr name="name"/>
+      </param>
+      <processor class="org.conqat.engine.commons.util.DisplayListEditor" name="display-list-editor">
+         <input ref="@value-duplicator2"/>
+         <clear all="true"/>
+         <add key="@volume-key"/>
+         <add key="@hint-key"/>
+      </processor>
+      <param name="input">
+         <doc>{@connDoc}</doc>
+         <attr name="ref">
+            <doc>{@connDoc}</doc>
+         </attr>
+      </param>
+      <out name="html-table" ref="@table-layouter">
+         <doc>{@connDoc}</doc>
+      </out>
+      <out name="renamed-tree" ref="@display-list-editor">
+         <doc>{@connDoc}</doc>
+      </out>
+      <out name="volume-key-name" ref="@volume-key"/>
+   </block-spec>
+   <meta type="cq.edit">
+      <entries namespace="table-layouter">
+         <entry key="pos" value="111,327"/>
+      </entries>
+      <entries namespace="sum-aggregator">
+         <entry key="pos" value="108,240"/>
+      </entries>
+      <entries namespace="value-duplicator">
+         <entry key="pos" value="352,339"/>
+      </entries>
+      <entries namespace="value-duplicator2">
+         <entry key="pos" value="352,416"/>
+      </entries>
+      <entries namespace="volume-key">
+         <entry key="pos" value="447,255"/>
+      </entries>
+      <entries namespace="hint-key">
+         <entry key="pos" value="627,255"/>
+      </entries>
+      <entries namespace="coverage">
+         <entry key="pos" value="640,141"/>
+      </entries>
+      <entries namespace="display-list-editor">
+         <entry key="pos" value="352,493"/>
+      </entries>
+      <entries namespace="input">
+         <entry key="pos" value="211,91"/>
+      </entries>
+      <entries namespace="html-table">
+         <entry key="pos" value="151,407"/>
+      </entries>
+      <entries namespace="renamed-tree">
+         <entry key="pos" value="392,571"/>
+      </entries>
+      <entries namespace="volume-key-name">
+         <entry key="pos" value="600,504"/>
+      </entries>
+   </meta>
+</conqat>

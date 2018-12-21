@@ -1,0 +1,10 @@
+# @ConQAT.Rating GREEN Hash: A26A4FDB57E9336F1C128159D0F84764
+
+name=Apache POI
+description=Java API To Access Microsoft Format Files
+version=3.6
+license=Apache License 2.0
+website=http://poi.apache.org/
+
+maven.group=org.apache.poi
+maven.artifact=poi

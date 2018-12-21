@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- 
+	$Id: bundle.xml 51805 2015-02-16 19:28:39Z hummelb $
+	$Rev: 51805 $
+	@levd.rating GREEN Hash: 735DEDBE4A7782850DFB7D41EEF279CC
+-->
+<bundle xmlns="http://conqat.cs.tum.edu/ns/bundle">
+   <name>C++ Bundle</name>
+   <provider>The ConQAT Project</provider>
+   <description>Classes for handling C++ code.</description>
+   <version major="2015" minor="2"/>
+   <requiresCore major="2015" minor="2"/>
+   <dependsOn bundleId="org.conqat.engine.commons" major="2015" minor="2"/>
+   <dependsOn bundleId="org.conqat.engine.resource" major="2015" minor="2"/>
+   <dependsOn bundleId="org.conqat.engine.sourcecode" major="2015" minor="2"/>
+</bundle>

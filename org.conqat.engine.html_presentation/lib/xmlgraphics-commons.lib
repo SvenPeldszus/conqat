@@ -1,0 +1,7 @@
+# @ConQAT.Rating GREEN Hash: 4F1354C4AE388EFEFE1529928583DF1F
+
+name=Apache XML Graphics Commons
+description=A library with various components used by Apache Batik and Apache FOP, written in Java
+version=1.4
+license=Apache License 2.0
+website=http://xmlgraphics.apache.org/commons/

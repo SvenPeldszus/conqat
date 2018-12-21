@@ -1,0 +1,7 @@
+# @ConQAT.Rating GREEN Hash: C4F093F671AC3E35228768F35D772544
+
+name=Hector
+description=A high level Java client for Apache Cassandra
+website=http://hector-client.github.io/hector/build/html/index.html
+version=1.1-4
+license=MIT

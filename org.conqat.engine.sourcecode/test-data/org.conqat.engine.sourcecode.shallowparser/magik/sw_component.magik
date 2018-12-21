@@ -1,0 +1,35 @@
+#% text_encoding = iso8859_1
+_package user
+# Copyright © 2004 Minto Spatial Solutions Ltd.
+#
+# This software is released under the terms of version 2 of the
+# GNU General Public License.  The full license text is
+# provided in the license.txt file in the mss product
+# directory, and is also available at http://www.fsf.org.
+
+_pragma(classify_level=restricted)
+_method sw_component.mss_question_handler
+	##
+	## Handle mss_question conditions by using show_query() to
+	## prompt for a result.
+	##
+	
+	_local me << _self
+	_return _proc @sw_component_mss_question_proc(cond)
+			_import me
+			_if me.top_frame _is _unset
+			_then
+				_return _unset
+			_endif
+			_if (bl << cond[:button_labels]) _is _unset _orif
+			    (bv << cond[:button_values]) _is _unset
+			_then
+				# Malformed - cannot display question.
+				_return
+			_endif
+			str << cond[:string]
+			_return me.show_query(bl, bv, _unset, str)
+	_endproc
+	
+_endmethod
+$

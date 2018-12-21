@@ -1,0 +1,11 @@
+_method foo.bar
+	_try
+		_with cond
+		write ("foo")
+		
+	_when error1
+		write("bar")
+	_when error2
+		write("baz")
+	_endtry
+_endmethod

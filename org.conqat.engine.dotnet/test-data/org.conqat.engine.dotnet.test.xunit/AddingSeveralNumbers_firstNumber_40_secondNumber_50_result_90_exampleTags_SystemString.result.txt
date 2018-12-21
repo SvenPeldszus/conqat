@@ -1,0 +1,10 @@
+Pass
+
+Given I have entered 40 into the calculator
+-> done: Steps.GivenIHaveEnteredSomethingIntoTheCalculator(40) (0.0s)
+And I have entered 50 into the calculator
+-> done: Steps.GivenIHaveEnteredSomethingIntoTheCalculator(50) (0.0s)
+When I press add
+-> done: Steps.WhenIPressAdd() (0.0s)
+Then the result should be 90 on the screen
+-> done: Steps.ThenTheResultShouldBePass(90) (0.0s)

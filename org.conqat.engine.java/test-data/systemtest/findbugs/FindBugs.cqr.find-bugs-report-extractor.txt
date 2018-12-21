@@ -1,0 +1,552 @@
+*** FindingReport***
+Id=
+Name=
+
+	Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+FindingCategory FindBugs
+	Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+	FindingGroup DLS_DEAD_LOCAL_STORE: Dead store to local variable
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = DLS_DEAD_LOCAL_STORE
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.samples.SimpleTest:testDivideByZero:DLS_DEAD_LOCAL_STORE
+			Location TextRegionLocation:TEST/junit/samples/SimpleTest.java:53-53
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.samples.SimpleTest:divideByZero:DLS_DEAD_LOCAL_STORE
+			Location TextRegionLocation:TEST/org/junit/samples/SimpleTest.java:28-28
+	FindingGroup DMI_USING_REMOVEALL_TO_CLEAR_COLLECTION: Don't use removeAll to clear a collection
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = DMI_USING_REMOVEALL_TO_CLEAR_COLLECTION
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.samples.ListTest:testRemoveAll:DMI_USING_REMOVEALL_TO_CLEAR_COLLECTION
+			Location TextRegionLocation:TEST/junit/samples/ListTest.java:55-55
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.samples.ListTest:testRemoveAll:DMI_USING_REMOVEALL_TO_CLEAR_COLLECTION
+			Location TextRegionLocation:TEST/junit/samples/ListTest.java:54-54
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.samples.ListTest:removeAll:DMI_USING_REMOVEALL_TO_CLEAR_COLLECTION
+			Location TextRegionLocation:TEST/org/junit/samples/ListTest.java:69-69
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.samples.ListTest:removeAll:DMI_USING_REMOVEALL_TO_CLEAR_COLLECTION
+			Location TextRegionLocation:TEST/org/junit/samples/ListTest.java:68-68
+	FindingGroup DM_DEFAULT_ENCODING: Reliance on default encoding
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = DM_DEFAULT_ENCODING
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.tests.runner.TextFeedbackTest:expected:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/junit/tests/runner/TextFeedbackTest.java:106-106
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.tests.runner.TextFeedbackTest:expected:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/junit/tests/runner/TextFeedbackTest.java:103-103
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.tests.runner.TextFeedbackTest:setUp:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/junit/tests/runner/TextFeedbackTest.java:39-39
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.tests.runner.TextFeedbackTest:testError:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/junit/tests/runner/TextFeedbackTest.java:87-87
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.tests.runner.TextFeedbackTest:testFailure:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/junit/tests/runner/TextFeedbackTest.java:71-71
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.tests.runner.TextRunnerSingleMethodTest:testSingle:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/junit/tests/runner/TextRunnerSingleMethodTest.java:30-30
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.tests.runner.TextRunnerTest:testRunReturnsResult:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/junit/tests/runner/TextRunnerTest.java:45-45
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.experimental.results.PrintableResult:toString:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/experimental/results/PrintableResult.java:42-42
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.experimental.results.PrintableResult:toString:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/experimental/results/PrintableResult.java:41-41
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.CommandLineTest:before:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/CommandLineTest.java:22-22
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.ForwardCompatibilityPrintingTest:expected:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/ForwardCompatibilityPrintingTest.java:87-87
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.ForwardCompatibilityPrintingTest:expected:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/ForwardCompatibilityPrintingTest.java:84-84
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.ForwardCompatibilityPrintingTest:testError:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/ForwardCompatibilityPrintingTest.java:54-54
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.ForwardCompatibilityPrintingTest:testError:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/ForwardCompatibilityPrintingTest.java:33-33
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.ForwardCompatibilityPrintingTest:testError:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/ForwardCompatibilityPrintingTest.java:39-39
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.ForwardCompatibilityPrintingTest:testErrorAdapted:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/ForwardCompatibilityPrintingTest.java:79-79
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.ForwardCompatibilityPrintingTest:testErrorAdapted:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/ForwardCompatibilityPrintingTest.java:65-65
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.ForwardCompatibilityPrintingTest:testErrorAdapted:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/ForwardCompatibilityPrintingTest.java:71-71
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.TextListenerTest:convert:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/TextListenerTest.java:62-62
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.TextListenerTest:convert:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/TextListenerTest.java:60-60
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.TextListenerTest:setUp:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/TextListenerTest.java:22-22
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.TextListenerTest:testError:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/TextListenerTest.java:43-43
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.TextListenerTest:testError:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/TextListenerTest.java:44-44
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.TextListenerTest:testSuccess:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/TextListenerTest.java:33-33
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.TextListenerTest:testSuccess:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/TextListenerTest.java:34-34
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.TextListenerTest:testTime:DM_DEFAULT_ENCODING
+			Location TextRegionLocation:TEST/org/junit/tests/TextListenerTest.java:55-55
+	FindingGroup DM_EXIT: Method invokes System.exit(...)
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = DM_EXIT
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.textui.TestRunner:runFailed:DM_EXIT
+			Location TextRegionLocation:TEST/junit/textui/TestRunner.java:195-195
+	FindingGroup DM_NUMBER_CTOR: Method invokes inefficient Number constructor; use static valueOf instead
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = DM_NUMBER_CTOR
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.framework.Assert:assertEquals:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/junit/framework/Assert.java:156-156
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.framework.Assert:assertEquals:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/junit/framework/Assert.java:169-169
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.framework.Assert:assertEquals:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/junit/framework/Assert.java:195-195
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.framework.Assert:assertEquals:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/junit/framework/Assert.java:130-130
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.framework.Assert:assertEquals:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/junit/framework/Assert.java:182-182
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.samples.ListTest:testCapacity:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/junit/samples/ListTest.java:35-35
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.samples.ListTest:testRemoveElement:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/junit/samples/ListTest.java:60-60
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.samples.SimpleTest:testEquals:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/junit/samples/SimpleTest.java:58-58
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.tests.framework.AssertTest:testAssertNotSame:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/junit/tests/framework/AssertTest.java:127-127
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.tests.framework.AssertTest:testAssertSame:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/junit/tests/framework/AssertTest.java:119-119
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.samples.ListTest:removeElement:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/org/junit/samples/ListTest.java:74-74
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.samples.SimpleTest:testEquals:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/org/junit/samples/SimpleTest.java:33-33
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AssertionTest:IntegerDoesNotEqualLong:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/org/junit/tests/AssertionTest.java:128-128
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AssertionTest:IntegerDoesNotEqualLong:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/org/junit/tests/AssertionTest.java:128-128
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AssertionTest:errorMessageDistinguishesDifferentValuesWithSameToString:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/org/junit/tests/AssertionTest.java:394-394
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SuiteDescriptionTest:equalsIsCorrect:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/org/junit/tests/SuiteDescriptionTest.java:21-21
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.TestDescriptionTest:equalsIsFalseForNonTestDescription:DM_NUMBER_CTOR
+			Location TextRegionLocation:TEST/org/junit/tests/TestDescriptionTest.java:9-9
+	FindingGroup EC_BAD_ARRAY_COMPARE: Invocation of equals() on an array, which is equivalent to ==
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = EC_BAD_ARRAY_COMPARE
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AssertionTest:arraysDeclaredAsObjectAreComparedAsObjects:EC_BAD_ARRAY_COMPARE
+			Location TextRegionLocation:TEST/org/junit/tests/AssertionTest.java:372-372
+	FindingGroup EC_UNRELATED_TYPES: Call to equals() comparing different types
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = EC_UNRELATED_TYPES
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AssertionTest:IntegerDoesNotEqualLong:EC_UNRELATED_TYPES
+			Location TextRegionLocation:TEST/org/junit/tests/AssertionTest.java:128-128
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AssertionTest:errorMessageDistinguishesDifferentValuesWithSameToString:EC_UNRELATED_TYPES
+			Location TextRegionLocation:TEST/org/junit/tests/AssertionTest.java:394-394
+	FindingGroup HE_EQUALS_USE_HASHCODE: Class defines equals() and uses Object.hashCode()
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = HE_EQUALS_USE_HASHCODE
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.experimental.theories.internal.ParameterizedAssertionError:equals:HE_EQUALS_USE_HASHCODE
+			Location TextRegionLocation:TEST/org/junit/experimental/theories/internal/ParameterizedAssertionError.java:21-21
+	FindingGroup IJU_TEARDOWN_NO_SUPER: TestCase defines tearDown that doesn't call super.tearDown()
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = IJU_TEARDOWN_NO_SUPER
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.tests.framework.TestCaseTest$8:tearDown:IJU_TEARDOWN_NO_SUPER
+			Location TextRegionLocation:TEST/junit/tests/framework/TestCaseTest.java:129-129
+	FindingGroup LI_LAZY_INIT_UPDATE_STATIC: Incorrect lazy initialization and update of static field
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = LI_LAZY_INIT_UPDATE_STATIC
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.runner.BaseTestRunner:getPreferences:LI_LAZY_INIT_UPDATE_STATIC
+			Location TextRegionLocation:TEST/junit/runner/BaseTestRunner.java:48-49
+	FindingGroup MS_PKGPROTECT: Field should be package protected
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = MS_PKGPROTECT
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.samples.ListTest:fgHeavy:MS_PKGPROTECT
+			Location TextRegionLocation:TEST/org/junit/samples/ListTest.java:18-76
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SingleMethodTest:count:MS_PKGPROTECT
+			Location TextRegionLocation:TEST/org/junit/tests/SingleMethodTest.java:27-147
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SuiteMethodTest:wasRun:MS_PKGPROTECT
+			Location TextRegionLocation:TEST/org/junit/tests/SuiteMethodTest.java:14-117
+	FindingGroup NM_METHOD_NAMING_CONVENTION: Method names should start with a lower case letter
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = NM_METHOD_NAMING_CONVENTION
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AssertionTest:IntegerDoesNotEqualLong:NM_METHOD_NAMING_CONVENTION
+			Location TextRegionLocation:TEST/org/junit/tests/AssertionTest.java:128-129
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AssumptionViolatedExceptionTest:AssumptionViolatedExceptionDescribesItself:NM_METHOD_NAMING_CONVENTION
+			Location TextRegionLocation:TEST/org/junit/tests/AssumptionViolatedExceptionTest.java:28-30
+	FindingGroup NP_EQUALS_SHOULD_HANDLE_NULL_ARGUMENT: equals() method does not check for null argument
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = NP_EQUALS_SHOULD_HANDLE_NULL_ARGUMENT
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.experimental.theories.internal.ParameterizedAssertionError:equals:NP_EQUALS_SHOULD_HANDLE_NULL_ARGUMENT
+			Location TextRegionLocation:TEST/org/junit/experimental/theories/internal/ParameterizedAssertionError.java:21-21
+	FindingGroup NP_NONNULL_PARAM_VIOLATION: Method call passes null to a nonnull parameter 
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = NP_NONNULL_PARAM_VIOLATION
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.tests.framework.AssertTest:testAssertNotNull:NP_NONNULL_PARAM_VIOLATION
+			Location TextRegionLocation:TEST/junit/tests/framework/AssertTest.java:88-88
+	FindingGroup OBL_UNSATISFIED_OBLIGATION: Method may fail to clean up stream or resource
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = OBL_UNSATISFIED_OBLIGATION
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.runner.BaseTestRunner:readPreferences:OBL_UNSATISFIED_OBLIGATION
+			Location TextRegionLocation:TEST/junit/runner/BaseTestRunner.java:229-229
+	FindingGroup OS_OPEN_STREAM: Method may fail to close stream
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = OS_OPEN_STREAM
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.runner.BaseTestRunner:readPreferences:OS_OPEN_STREAM
+			Location TextRegionLocation:TEST/junit/runner/BaseTestRunner.java:229-229
+	FindingGroup SIC_INNER_SHOULD_BE_STATIC: Should be a static inner class
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = SIC_INNER_SHOULD_BE_STATIC
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.InitializationErrorForwardCompatibilityTest$ErrorRememberingListener::SIC_INNER_SHOULD_BE_STATIC
+			Location TextRegionLocation:TEST/org/junit/tests/InitializationErrorForwardCompatibilityTest.java:61-79
+	FindingGroup ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD: Write to static field from instance method
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.runner.BaseTestRunner:processArguments|fgFilterStack:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/junit/runner/BaseTestRunner.java:160-160
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.tests.runner.TextRunnerSingleMethodTest:testSingle|fgWasInvoked:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/junit/tests/runner/TextRunnerSingleMethodTest.java:34-34
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.tests.runner.TextRunnerSingleMethodTest$InvocationTest:testWasInvoked|fgWasInvoked:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/junit/tests/runner/TextRunnerSingleMethodTest.java:20-20
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AllTestsTest:ensureTestIsRun|run:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AllTestsTest.java:33-33
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest:setUp|run:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:22-22
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest:testErrorInAfterClass|run:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:307-307
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest:testErrorInBeforeClass|run:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:288-288
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest:testOneTimeSetup|count:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:226-226
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest:testOneTimeTeardown|count:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:241-241
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest:testOrder|log:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:258-258
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest:testOrderingOfInheritance|log:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:348-348
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest:testRunAllAfterClasses|log:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:474-474
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest:testRunAllAfterClassesRegardless|log:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:495-495
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest:testRunAllAfters|log:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:428-428
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest:testRunAllAftersRegardless|log:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:449-449
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest:testShadowing|log:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:378-378
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest:testTestInheritance|log:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:402-402
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest:testTwoTests|count:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:160-160
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest:testTwoTests|tests:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:161-161
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest$ErrorInAfterClass:test|run:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:299-299
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest$ErrorInBeforeClass:test|run:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:283-283
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest$OldSuiteTest:testOne|run:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:181-181
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest$OldTest:test|run:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:170-170
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest$SetupFailureTest:test|run:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:84-84
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest$SetupTest:before|run:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:39-39
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest$SimpleTest:success|run:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:27-27
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest$TeardownAfterFailureTest:after|run:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:133-133
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.AnnotationTest$TeardownTest:after|run:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/AnnotationTest.java:53-53
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.CommandLineTest:runAClass|testWasRun:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/CommandLineTest.java:42-42
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.CommandLineTest:runATest|testWasRun:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/CommandLineTest.java:36-36
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.CommandLineTest:runTwoClasses|fCount:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/CommandLineTest.java:62-62
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.CommandLineTest:runTwoClassesAsArray|fCount:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/CommandLineTest.java:56-56
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.ForwardCompatibilityTest:testBeforeAndAfterClass|log:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/ForwardCompatibilityTest.java:148-148
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.ForwardCompatibilityTest:testCompatibility|fLog:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/ForwardCompatibilityTest.java:35-35
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.ForwardCompatibilityTest:testRunWithClass|wasRun:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/ForwardCompatibilityTest.java:211-211
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.ListenerTest:notifyListenersInTheOrderInWhichTheyAreAdded|log:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/ListenerTest.java:17-17
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.ParameterizedTestTest:beforeAndAfterClassAreRun|fLog:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/ParameterizedTestTest.java:101-101
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.PreJUnit4TestCaseRunnerTest:testListener|count:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/PreJUnit4TestCaseRunnerTest.java:33-33
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.RunWithTest:run|log:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/RunWithTest.java:44-44
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.RunWithTest:runWithExtendsToSubclasses|log:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/RunWithTest.java:56-56
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SingleMethodTest:oneTimeSetup|count:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/SingleMethodTest.java:43-43
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SingleMethodTest:parameterizedOneTimeSetup|count:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/SingleMethodTest.java:70-70
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SortableTest$TestClassRunnerIsSortable:resetLog|log:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/SortableTest.java:47-47
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SortableTest$TestClassRunnerIsSortableWithSuiteMethod:resetLog|log:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/SortableTest.java:107-107
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SuiteMethodTest:makeSureSuiteIsCalled|wasRun:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/SuiteMethodTest.java:34-34
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SuiteMethodTest:makeSureSuiteNotUsedWithJUnit4Classes2|wasRun:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/SuiteMethodTest.java:109-109
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SuiteMethodTest:makeSureSuiteWorksWithJUnit4Classes|wasRun:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/SuiteMethodTest.java:50-50
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SuiteMethodTest:suiteIsUsedWithJUnit4Classes|wasRun:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/SuiteMethodTest.java:86-86
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SuiteMethodTest$NewTest:sample|wasRun:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/SuiteMethodTest.java:41-41
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SuiteMethodTest$NewTestSuiteFails:sample|wasRun:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/SuiteMethodTest.java:76-76
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SuiteMethodTest$NewTestSuiteNotUsed:ignore|wasIgnoredRun:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/SuiteMethodTest.java:100-100
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SuiteMethodTest$NewTestSuiteNotUsed:sample|wasRun:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/SuiteMethodTest.java:96-96
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SuiteMethodTest$OldTest:notObviouslyATest|wasRun:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/SuiteMethodTest.java:29-29
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.SuiteTest:beforeAndAfterClassRunOnSuite|log:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/SuiteTest.java:79-79
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = org.junit.tests.TimeoutTest$WillTimeOut:after|afterWasCalled:ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD
+			Location TextRegionLocation:TEST/org/junit/tests/TimeoutTest.java:153-153
+	FindingGroup VO_VOLATILE_INCREMENT: An increment to a volatile field isn't atomic
+		Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+		Key rule-identifier = VO_VOLATILE_INCREMENT
+		Finding finding
+			Key comparator = org.conqat.engine.commons.sorting.NameSorter$NameComparator
+			Key message = junit.extensions.ActiveTestSuite:runFinished|fActiveTestDeathCount:VO_VOLATILE_INCREMENT
+			Location TextRegionLocation:TEST/junit/extensions/ActiveTestSuite.java:67-67

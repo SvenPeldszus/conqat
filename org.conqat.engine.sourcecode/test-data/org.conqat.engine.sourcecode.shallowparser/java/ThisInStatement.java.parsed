@@ -1,0 +1,8 @@
+TYPE: class: Foo (lines 2-19)
+  META: annotation: Override (lines 4-4)
+  METHOD: method: doSchedule (lines 5-17)
+    STATEMENT: simple statement: this (lines 6-16)
+      TYPE: anonymous class: LockRunner (lines 7-16)
+        META: annotation: Override (lines 9-9)
+        METHOD: method: doRefresh (lines 10-15)
+          STATEMENT: simple statement: Foo (lines 11-14)

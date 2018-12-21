@@ -1,0 +1,32 @@
+        -:    0:Source:include/test.h
+        -:    0:Graph:build/module/test.gcno
+        -:    0:Data:build/module/test.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#ifndef TEST_H
+        -:    2:#define TEST_H
+        -:    3:
+        -:    4:#include <cstdio>
+        -:    5:#include <iostream>
+        -:    6:
+        -:    7:void externalFunction (int);
+        -:    8:
+        -:    9:template<typename T>
+        -:   10:class Printer {
+        -:   11:
+        -:   12: public:
+        -:   13:
+        1:   14:  static void printOne () {
+        1:   15:    std::cout << "called by one" << std::endl;
+        1:   16:  }
+        -:   17:
+        -:   18:  static void printNever () {
+        -:   19:    std::cout << "never called" << std::endl;
+        -:   20:  }
+        -:   21:
+        1:   22:  static void printBoth () {
+        1:   23:    printf("called from both\n");
+        1:   24:  }
+        -:   25:};
+        -:   26:
+        -:   27:#endif // TEST_H

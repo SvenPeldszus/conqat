@@ -1,0 +1,9 @@
+# @ConQAT.Rating GREEN Hash: 3AF83E305B9F0F3BE72AA51351005B7A
+
+name=Google Closure Templates
+description=A client- and server-side templating system that helps you dynamically build reusable HTML and UI elements.
+version=2012/12/21
+license=Apache License 2.0
+website=http://code.google.com/p/closure-templates/
+
+remark=Manually removed google commons (com.google.common.*) and args4j (org.kohsuke.*)

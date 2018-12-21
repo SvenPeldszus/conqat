@@ -1,0 +1,10 @@
+# @ConQAT.Rating GREEN Hash: 861A1F257B2C66C3F7E403C9AE350D15
+
+name=Apache Commons Math
+description=The Math project is a library of lightweight, self-contained mathematics and statistics components.
+version=2.2
+license=Apache License 2.0
+website=http://commons.apache.org/proper/commons-math/
+
+maven.group=org.apache.commons
+maven.artifact=commons-math

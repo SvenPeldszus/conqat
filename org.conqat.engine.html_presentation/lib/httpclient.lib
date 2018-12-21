@@ -1,0 +1,10 @@
+# @ConQAT.Rating GREEN Hash: C919EBFA51DD0A82136D97321E5F1CBE
+
+name=Apache Commons HTTP Components Client
+description=HttpComponents Client (base module)
+version=4.3.5
+license=Apache License 2.0
+website=http://hc.apache.org/
+
+maven.group=org.apache.httpcomponents
+maven.artifact=httpclient

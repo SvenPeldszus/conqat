@@ -1,0 +1,7 @@
+# @ConQAT.Rating GREEN Hash: 65CDCA87E5BB7975FE936307DFE89CBC
+
+name=Apache Batik SVG Toolkit
+description=Batik is a Java-based toolkit for applications or applets that want to use images in the Scalable Vector Graphics (SVG) format for various purposes, such as display, generation or manipulation.
+version=1.7
+license=Apache License 2.0
+website=http://xmlgraphics.apache.org/batik/

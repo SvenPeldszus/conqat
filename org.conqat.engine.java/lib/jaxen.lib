@@ -1,0 +1,13 @@
+# @ConQAT.Rating GREEN Hash: 4523298A841029D0ED7783DA507CE296
+
+name=jaxen
+description=Java XPath Engine
+website=http://jaxen.codehaus.org/
+version=1.1.6
+license=Jaxen License
+license.website=http://jaxen.codehaus.org/license.html
+license.apacheCompatible=true
+license.commercialUse=true
+
+maven.group=jaxen
+maven.artifact=jaxen

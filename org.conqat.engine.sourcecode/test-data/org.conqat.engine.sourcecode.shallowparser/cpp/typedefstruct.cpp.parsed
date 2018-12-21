@@ -1,0 +1,5 @@
+TYPE: typedef: LPNMSORTLISTVIEW (lines 2-7)
+  TYPE: struct: tagNMSORTLISTVIEW (lines 2-7)
+    ATTRIBUTE: attribute: hdr (lines 4-4)
+    ATTRIBUTE: attribute: iNewSortColumn (lines 5-5)
+    ATTRIBUTE: attribute: iOldSortColumn (lines 6-6)

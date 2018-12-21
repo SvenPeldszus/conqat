@@ -1,0 +1,8 @@
+TYPE: class: TheClass (lines 1-15)
+  METHOD: method: testStartProgramWithoutRuns (lines 5-15)
+    STATEMENT: simple statement: climaticControlLib (lines 6-6)
+    STATEMENT: try: null (lines 8-11)
+      STATEMENT: simple statement: self (lines 9-9)
+    STATEMENT: finally: null (lines 11-14)
+      STATEMENT: simple statement: serialObject (lines 12-12)
+    STATEMENT: simple statement: return (lines 14-14)

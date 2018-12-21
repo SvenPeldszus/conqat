@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+prefixMappings=<list>\n  <com.teamscale.ide.client.PrefixMapping>\n    <localPrefix></localPrefix>\n    <teamscalePrefix>engine/org.conqat.engine.commons</teamscalePrefix>\n  </com.teamscale.ide.client.PrefixMapping>\n</list>
+teamscaleEnabled=true
+teamscaleProject=cqse-all
+teamscaleServer=CQSE-BUILD

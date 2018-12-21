@@ -1,0 +1,14 @@
+# @ConQAT.Rating GREEN Hash: 7CCD6B6FFB60767B35D21B9169B09763
+
+name=XStream Core
+description=XStream is a simple library to serialize objects to XML and back again.
+version=1.4.2
+website=http://xstream.codehaus.org/
+
+license=BSD-style License
+license.website=http://xstream.codehaus.org/license.html
+license.apacheCompatible=true
+license.commercialUse=true
+
+maven.group=com.thoughtworks.xstream
+maven.artifact=xstream

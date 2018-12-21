@@ -1,0 +1,61 @@
+**********Summary**********
+#Nodes:3
+Root display List: assessment, execution time, test result, failed, passed, ignored, report date
+
+ Name: 
+	assessment=[G: 2, Y: 0, R: 1]
+	execution time=NULL
+	test result=NULL
+	failed=1
+	passed=2
+	ignored=0
+	report date=Fri Jun 03 16:04:36 CEST 2011
+
+TestCreationAppTests.ProgramTest Name: TestCreationAppTests.ProgramTest
+	assessment=[G: 2, Y: 0, R: 1]
+	execution time=NULL
+	test result=NULL
+	failed=1
+	passed=2
+	ignored=0
+	report date=NULL
+
+TestCreationAppTests.ProgramTest.TestMethod1 Name: TestMethod1
+	assessment=GREEN
+	execution time=0
+	test result=Passed
+	failed=0
+	passed=1
+	ignored=0
+	report date=NULL
+
+TestCreationAppTests.ProgramTest.TestMethod2 Name: TestMethod2
+	assessment=GREEN
+	execution time=0.002
+	test result=Passed
+	failed=0
+	passed=1
+	ignored=0
+	report date=NULL
+
+TestCreationAppTests.ProgramTest.TestMethod3 Name: TestMethod3
+	assessment=RED
+	execution time=0.093
+	test result=Failed
+		
+		Assert.IsFalse failed. 
+		at TestCreationAppTests.ProgramTest.TestMethod3() in C:\Users\niha\Documents\Visual Studio 2010\Projects\TestCreationApp\TestCreationAppTests\ProgramTest.cs:line 34
+	failed=1
+	passed=0
+	ignored=0
+	report date=NULL
+
+niha@NIHA-PC 2011-06-03 16:04:36 Name: niha@NIHA-PC 2011-06-03 16:04:36
+	assessment=[G: 2, Y: 0, R: 1]
+	execution time=NULL
+	test result=NULL
+	failed=1
+	passed=2
+	ignored=0
+	report date=Fri Jun 03 16:04:36 CEST 2011
+

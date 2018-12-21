@@ -1,0 +1,46 @@
+0: { BasicBlock 1
+  ---
+  ---
+  h_-1 = ?
+  ---
+  use(h_-1)
+  condition(yes=[h_-1=A], no=[h_-1=N], checked=[h_-1])
+  ---
+ } --> 1, 2
+1: { BasicBlock 2
+  ---
+  h_-2 = null
+  ---
+  use(h_-2)
+  dereference(h_-2)
+  ---
+ } --> 3
+3: { BasicBlock 3
+  h_-3 = phi(h_-2, h_-7)
+  ---
+  use(h_-3)
+  condition(yes=[h_-3=N], no=[h_-3=A], checked=[h_-3])
+  ---
+ } --> 4, 5
+4: { BasicBlock 4
+  ---
+  h_-4 = value( assume non-null )
+  ---
+  use(h_-4)
+  dereference(h_-4)
+  ---
+ } --> 6
+6: { BasicBlock 5
+  ---
+  ---
+ } --> 
+5: { BasicBlock 6
+  ---
+  h_-6 = null
+  ---
+ } --> 6
+2: { BasicBlock 7
+  ---
+  h_-7 = value( assume non-null )
+  ---
+ } --> 3

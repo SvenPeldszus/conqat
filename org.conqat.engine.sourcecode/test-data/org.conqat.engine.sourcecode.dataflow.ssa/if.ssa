@@ -1,0 +1,22 @@
+0: { BasicBlock 1
+  ---
+  ---
+  a_-1 = value( 0 )
+  ---
+  use(a_-1)
+  condition(yes=[], no=[], checked=[])
+  ---
+ } --> 1, 2
+1: { BasicBlock 2
+  a_4 = phi(a_-1)
+  ---
+  a_-2 = value( 2 )
+  ---
+ } --> 2
+2: { BasicBlock 3
+  a_1 = phi(a_-1, a_-2)
+  ---
+  a_-3 = value( 3 )
+  ---
+  ---
+ } --> 
